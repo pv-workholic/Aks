@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>AKS — Aapka Aks. Aapki Dastaan.</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    /* =========================================
+       AKS — DESIGN SYSTEM
+       ========================================= */
+
+    :root {
+      --midnight: #080B1A;
+      --plum: #241126;
+      --gold: #C9A45C;
+      --ivory: #F4EBDD;
+      --rose: #A65D6A;
+
+      --font-display: "Cormorant Garamond", serif;
+      --font-body: "Inter", sans-serif;
+
+      --max-width: 1200px;
+      --section-padding: 100px 24px;
+      --border-radius: 20px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at top, #241126 0%, #080B1A 45%);
+      color: var(--ivory);
+      font-family: var(--font-body);
+      min-height: 100vh;
+    }
+
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      font-weight: 500;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    /* =========================================
+       REUSABLE COMPONENTS
+       ========================================= */
+
+    .container {
+      width: min(100%, var(--max-width));
+      margin: auto;
+    }
+
+    .section {
+      min-height: 100vh;
+      padding: var(--section-padding);
+      display: flex;
+      align-items: center;
+    }
+
+    .section-title {
+      color: var(--gold);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      margin-bottom: 20px;
+    }
+
+    .placeholder {
+      width: 100%;
+      padding: 60px 30px;
+      border: 1px solid rgba(201, 164, 92, 0.3);
+      border-radius: var(--border-radius);
+      background: rgba(255, 255, 255, 0.03);
+      text-align: center;
+    }
+
+    .placeholder p {
+      color: rgba(244, 235, 221, 0.65);
+      margin-top: 10px;
+    }
+
+    .gold-button {
+      background: var(--gold);
+      color: var(--midnight);
+      border: none;
+      padding: 15px 30px;
+      border-radius: 100px;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    .gold-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(201, 164, 92, 0.25);
+    }
+
+    /* =========================================
+       01 — LANDING / HERO
+       Paste Hero Section CSS Here
+       ========================================= */
+
+    
+
+.aks-hero {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  justify-content: center;
+  text-align: center;
+
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(166, 93, 106, 0.12),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(201, 164, 92, 0.06),
+      transparent 45%
+    ),
+    linear-gradient(
+      180deg,
+      #080b1a 0%,
+      #0d0a18 55%,
+      #160d1c 100%
+    );
+}
+
+
+/* CINEMATIC GOLDEN GLOW */
+
+.hero-glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+
+  top: 45%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(201, 164, 92, 0.09),
+      transparent 65%
+    );
+
+  filter: blur(30px);
+
+  animation: breatheGlow 5s ease-in-out infinite;
+}
+
+
+/* SUBTLE FILM TEXTURE */
+
+.film-grain {
+  position: absolute;
+  inset: 0;
+
+  opacity: 0.04;
+
+  background-image:
+    repeating-radial-gradient(
+      circle at 0 0,
+      transparent 0,
+      rgba(255,255,255,0.4) 1px,
+      transparent 2px
+    );
+
+  background-size: 8px 8px;
+
+  pointer-events: none;
+}
+
+
+/* MAIN CONTENT */
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+
+  max-width: 800px;
+
+  opacity: 0;
+  transform: translateY(20px);
+
+  animation: heroEntrance 1.5s ease forwards;
+}
+
+
+/* SMALL INTRO TEXT */
+
+.hero-eyebrow {
+  color: var(--gold);
+
+  font-size: 0.7rem;
+  font-weight: 500;
+
+  letter-spacing: 0.4em;
+
+  margin-bottom: 30px;
+
+  opacity: 0;
+
+  animation:
+    fadeUp 1s ease forwards 0.4s;
+}
+
+
+/* AKS LOGO */
+
+.aks-logo-wrap {
+  position: relative;
+
+  display: inline-flex;
+  flex-direction: column;
+
+  margin-bottom: 25px;
+}
+
+
+.aks-logo {
+  font-family: var(--font-display);
+
+  font-size: clamp(6rem, 18vw, 13rem);
+
+  font-weight: 500;
+
+  line-height: 0.75;
+
+  letter-spacing: 0.15em;
+
+  margin-left: 0.15em;
+
+  color: transparent;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f1dfb2,
+      var(--gold),
+      #8d6c35
+    );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  text-shadow:
+    0 0 40px rgba(201, 164, 92, 0.12);
+
+  opacity: 0;
+
+  animation:
+    logoReveal 1.8s ease forwards 0.7s;
+}
+
+
+/* URDU REFLECTION */
+
+.aks-urdu {
+  font-family: serif;
+
+  color: var(--gold);
+
+  font-size: 2rem;
+
+  margin-top: 18px;
+
+  opacity: 0;
+
+  transform: scaleY(-1);
+
+  filter: blur(0.3px);
+
+  animation:
+    reflectionReveal 1.5s ease forwards 1.5s;
+}
+
+
+/* TAGLINE */
+
+.hero-tagline {
+  font-family: var(--font-display);
+
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+
+  color: var(--ivory);
+
+  margin-bottom: 20px;
+
+  opacity: 0;
+
+  animation:
+    fadeUp 1s ease forwards 1.7s;
+}
+
+
+.hero-tagline span {
+  color: var(--gold);
+  font-style: italic;
+}
+
+
+/* DESCRIPTION */
+
+.hero-description {
+  max-width: 620px;
+
+  margin:
+    0 auto
+    35px;
+
+  color:
+    rgba(244, 235, 221, 0.65);
+
+  font-size: 0.95rem;
+
+  line-height: 1.8;
+
+  opacity: 0;
+
+  animation:
+    fadeUp 1s ease forwards 2s;
+}
+
+
+/* BEGIN BUTTON */
+
+.begin-button {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+
+  padding:
+    16px
+    28px;
+
+  border:
+    1px solid
+    rgba(201, 164, 92, 0.6);
+
+  border-radius: 100px;
+
+  background:
+    rgba(201, 164, 92, 0.05);
+
+  color: var(--ivory);
+
+  font-family: var(--font-body);
+
+  font-size: 0.85rem;
+
+  letter-spacing: 0.08em;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.4s ease,
+    background 0.4s ease,
+    box-shadow 0.4s ease;
+
+  opacity: 0;
+
+  animation:
+    fadeUp 1s ease forwards 2.3s;
+}
+
+
+.begin-button::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(201, 164, 92, 0.2),
+      transparent
+    );
+
+  transform: translateX(-100%);
+
+  transition:
+    transform 0.7s ease;
+}
+
+
+.begin-button:hover::before {
+  transform: translateX(100%);
+}
+
+
+.begin-button:hover {
+  transform: translateY(-4px);
+
+  background:
+    rgba(201, 164, 92, 0.1);
+
+  box-shadow:
+    0 15px 45px
+    rgba(201, 164, 92, 0.12);
+}
+
+
+.button-arrow {
+  color: var(--gold);
+
+  font-size: 1.2rem;
+
+  transition:
+    transform 0.3s ease;
+}
+
+
+.begin-button:hover .button-arrow {
+  transform:
+    translateX(5px);
+}
+
+
+/* SMALL NOTE */
+
+.hero-note {
+  margin-top: 18px;
+
+  color:
+    rgba(244, 235, 221, 0.3);
+
+  font-size: 0.7rem;
+
+  letter-spacing: 0.08em;
+
+  opacity: 0;
+
+  animation:
+    fadeUp 1s ease forwards 2.5s;
+}
+
+
+/* SCROLL INDICATOR */
+
+.scroll-indicator {
+  position: absolute;
+
+  bottom: 25px;
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 10px;
+
+  color:
+    rgba(244, 235, 221, 0.35);
+
+  font-size: 0.55rem;
+
+  letter-spacing: 0.3em;
+
+  z-index: 2;
+}
+
+
+.scroll-line {
+  width: 1px;
+  height: 35px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      var(--gold),
+      transparent
+    );
+
+  animation:
+    scrollPulse 2s
+    ease-in-out infinite;
+}
+
+
+/* =========================================
+   ANIMATIONS
+   ========================================= */
+
+@keyframes heroEntrance {
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0);
+  }
+
+}
+
+
+@keyframes fadeUp {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+
+}
+
+
+@keyframes logoReveal {
+
+  from {
+    opacity: 0;
+
+    transform:
+      scale(0.95);
+
+    filter:
+      blur(10px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      scale(1);
+
+    filter:
+      blur(0);
+  }
+
+}
+
+
+@keyframes reflectionReveal {
+
+  from {
+    opacity: 0;
+
+    transform:
+      scaleY(-1)
+      translateY(-10px);
+  }
+
+  to {
+    opacity: 0.35;
+
+    transform:
+      scaleY(-1)
+      translateY(0);
+  }
+
+}
+
+
+@keyframes breatheGlow {
+
+  0%,
+  100% {
+    opacity: 0.5;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+  }
+
+  50% {
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.15);
+  }
+
+}
+
+
+@keyframes scrollPulse {
+
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 768px) {
+
+  .aks-hero {
+    padding:
+      60px
+      24px;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.55rem;
+
+    letter-spacing:
+      0.25em;
+  }
+
+  .aks-logo {
+    font-size:
+      clamp(
+        5rem,
+        27vw,
+        8rem
+      );
+  }
+
+  .hero-description {
+    font-size:
+      0.85rem;
+  }
+
+  .scroll-indicator {
+    bottom:
+      15px;
+  }
+
+  }
+    /* =========================================
+       02 — CINEMA SELECTION
+       Bollywood / Hollywood / Tollywood etc.
+       Paste Cinema Selection CSS Here
+       ========================================= */
+
+
+    /* =========================================
+       03 — GENRE SELECTION
+       Romance / Thriller / Fantasy etc.
+       Paste Genre Selection CSS Here
+       ========================================= */
+
+
+    /* =========================================
+       04 — PERSONALITY EXPERIENCE
+       Interactive Questions
+       Paste Questionnaire CSS Here
+       ========================================= */
+
+
+    /* =========================================
+       05 — PHOTO UPLOAD
+       Optional User Photo
+       Paste Upload CSS Here
+       ========================================= */
+
+
+    /* =========================================
+       06 — AI GENERATION / LOADING
+       Cinematic Loading Experience
+       Paste Loading CSS Here
+       ========================================= */
+
+
+    /* =========================================
+       07 — MOVIE REVEAL
+       Title / Tagline / Genre
+       Paste Reveal CSS Here
+       ========================================= */
+
+
+    /* =========================================
+       08 — AI MOVIE POSTER
+       Paste Poster CSS Here
+       ========================================= */
+
+
+    /* =========================================
+       09 — CHARACTER PROFILE
+       Main Character Energy
+       Paste Character CSS Here
+       ========================================= */
+
+
+    /* =========================================
+       10 — FULL STORY
+       Plot / Twist / Climax / Ending
+       Paste Story CSS Here
+       ========================================= */
+
+
+    /* =========================================
+       11 — CAST
+       Best Friend / Love Interest / Villain
+       Paste Cast CSS Here
+       ========================================= */
+
+
+    /* =========================================
+       12 — ICONIC DIALOGUE
+       Paste Dialogue CSS Here
+       ========================================= */
+
+
+    /* =========================================
+       13 — SOUNDTRACK
+       Paste Soundtrack CSS Here
+       ========================================= */
+
+
+    /* =========================================
+       14 — POST CREDIT SCENE
+       Paste Post Credit CSS Here
+       ========================================= */
+
+
+    /* =========================================
+       15 — SHARE YOUR AKS
+       Share Cards / Download Poster
+       Paste Share CSS Here
+       ========================================= */
+
+
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @media (max-width: 768px) {
+      :root {
+        --section-padding: 70px 20px;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+
+  <!-- ======================================
+       01 — LANDING / HERO
+       ====================================== -->
+
+  <section id="hero" class="section">
+    <div class="container">
+      <h1 class="logo">AKS</h1>
+      <p class="tagline">Aapka Aks. Aapki Dastaan.</p>
+      <button class="gold-button">Begin Your Story</button>
+    </div>
+  </section>
+
+<!-- ======================================
+     01 — CINEMATIC LANDING / HERO
+     ====================================== -->
+
+<section id="hero" class="section aks-hero">
+
+  <div class="hero-glow"></div>
+  <div class="film-grain"></div>
+
+  <div class="hero-content">
+
+    <p class="hero-eyebrow">EVERY LIFE HOLDS A STORY</p>
+
+    <div class="aks-logo-wrap">
+      <h1 class="aks-logo">AKS</h1>
+      <span class="aks-urdu">عکس</span>
+    </div>
+
+    <p class="hero-tagline">
+      Aapka Aks. <span>Aapki Dastaan.</span>
+    </p>
+
+    <p class="hero-description">
+      Step into a world where your personality becomes the screenplay,
+      your choices shape the plot, and you become the main character.
+    </p>
+
+    <button class="begin-button" onclick="beginStory()">
+      <span>Begin Your Story</span>
+      <span class="button-arrow">→</span>
+    </button>
+
+    <p class="hero-note">A cinematic experience created around you</p>
+
+  </div>
+
+  <div class="scroll-indicator">
+    <span>ENTER THE STORY</span>
+    <div class="scroll-line"></div>
+  </div>
+
+</section>
+  <!-- ======================================
+       02 — CHOOSE YOUR CINEMA
+       ====================================== -->
+
+  <section id="cinema" class="section">
+    <div class="container placeholder">
+      <h2 class="section-title">Choose Your Cinema</h2>
+      <p>
+        Bollywood • Hollywood • Tollywood •
+        Kollywood • K-Drama • Anime
+      </p>
+
+      <!-- PASTE CINEMA CARDS HERE -->
+    </div>
+  </section>
+
+
+  <!-- ======================================
+       03 — CHOOSE YOUR GENRE
+       ====================================== -->
+
+  <section id="genre" class="section">
+    <div class="container placeholder">
+      <h2 class="section-title">Choose Your Genre</h2>
+      <p>
+        Romance • Thriller • Fantasy • Action •
+        Mystery • Comedy • Horror • Surprise Me
+      </p>
+
+      <!-- PASTE GENRE CARDS HERE -->
+    </div>
+  </section>
+
+
+  <!-- ======================================
+       04 — PERSONALITY EXPERIENCE
+       ====================================== -->
+
+  <section id="questions" class="section">
+    <div class="container placeholder">
+      <h2 class="section-title">Tell Us Who You Are</h2>
+      <p>Your personality becomes the screenplay.</p>
+
+      <!-- PASTE QUESTIONNAIRE HERE -->
+    </div>
+  </section>
+
+
+  <!-- ======================================
+       05 — PHOTO UPLOAD
+       ====================================== -->
+
+  <section id="photo-upload" class="section">
+    <div class="container placeholder">
+      <h2 class="section-title">Step Into The Frame</h2>
+      <p>Optional photo upload for your cinematic poster.</p>
+
+      <!-- PASTE PHOTO UPLOAD HERE -->
+    </div>
+  </section>
+
+
+  <!-- ======================================
+       06 — CINEMATIC LOADING
+       ====================================== -->
+
+  <section id="loading" class="section">
+    <div class="container placeholder">
+      <h2 class="section-title">Your Story Is Being Written...</h2>
+
+      <!-- PASTE AI LOADING ANIMATION HERE -->
+    </div>
+  </section>
+
+
+  <!-- ======================================
+       07 — MOVIE REVEAL
+       ====================================== -->
+
+  <section id="movie-reveal" class="section">
+    <div class="container placeholder">
+      <h2 class="section-title">Your Movie</h2>
+
+      <!-- MOVIE TITLE -->
+      <!-- TAGLINE -->
+      <!-- GENRE -->
+      <!-- CINEMATIC AESTHETIC -->
+    </div>
+  </section>
+
+
+  <!-- ======================================
+       08 — MOVIE POSTER
+       ====================================== -->
+
+  <section id="poster" class="section">
+    <div class="container placeholder">
+      <h2 class="section-title">The Poster</h2>
+
+      <!-- PASTE AI GENERATED POSTER HERE -->
+    </div>
+  </section>
+
+
+  <!-- ======================================
+       09 — CHARACTER PROFILE
+       ====================================== -->
+
+  <section id="character" class="section">
+    <div class="container placeholder">
+      <h2 class="section-title">The Main Character</h2>
+
+      <!-- CHARACTER NAME -->
+      <!-- ARCHETYPE -->
+      <!-- STRENGTH -->
+      <!-- FLAW -->
+      <!-- CHARACTER ARC -->
+    </div>
+  </section>
+
+
+  <!-- ======================================
+       10 — YOUR STORY
+       ====================================== -->
+
+  <section id="story" class="section">
+    <div class="container placeholder">
+      <h2 class="section-title">The Dastaan</h2>
+
+      <!-- OPENING SCENE -->
+      <!-- FULL PLOT -->
+      <!-- PLOT TWIST -->
+      <!-- CLIMAX -->
+      <!-- ENDING -->
+    </div>
+  </section>
+
+
+  <!-- ======================================
+       11 — YOUR CAST
+       ====================================== -->
+
+  <section id="cast" class="section">
+    <div class="container placeholder">
+      <h2 class="section-title">Meet Your Cast</h2>
+
+      <!-- BEST FRIEND -->
+      <!-- MENTOR -->
+      <!-- LOVE INTEREST -->
+      <!-- VILLAIN -->
+    </div>
+  </section>
+
+
+  <!-- ======================================
+       12 — ICONIC DIALOGUE
+       ====================================== -->
+
+  <section id="dialogue" class="section">
+    <div class="container placeholder">
+      <h2 class="section-title">The Line They Remember</h2>
+
+      <!-- AI GENERATED ICONIC DIALOGUE -->
+    </div>
+  </section>
+
+
+  <!-- ======================================
+       13 — SOUNDTRACK
+       ====================================== -->
+
+  <section id="soundtrack" class="section">
+    <div class="container placeholder">
+      <h2 class="section-title">Your Soundtrack</h2>
+
+      <!-- THEME SONG -->
+      <!-- MUSIC VIBE -->
+    </div>
+  </section>
+
+
+  <!-- ======================================
+       14 — POST CREDIT SCENE
+       ====================================== -->
+
+  <section id="post-credit" class="section">
+    <div class="container placeholder">
+      <h2 class="section-title">One More Thing...</h2>
+
+      <!-- POST CREDIT SCENE -->
+    </div>
+  </section>
+
+
+  <!-- ======================================
+       15 — SHARE YOUR AKS
+       ====================================== -->
+
+  <section id="share" class="section">
+    <div class="container placeholder">
+      <h2 class="section-title">Share Your AKS</h2>
+
+      <!-- SHARE CARD -->
+      <!-- POSTER DOWNLOAD -->
+      <!-- CREATE ANOTHER UNIVERSE -->
+    </div>
+  </section>
+
+
+  <script>
+    /* =========================================
+       AKS — JAVASCRIPT
+       ========================================= */
+
+
+    /* 01 — HERO
+       Paste Hero JavaScript Here
+    */
+/* =========================================
+   01 — HERO
+   ========================================= */
+
+function beginStory() {
+
+  const cinemaSection =
+    document.getElementById("cinema");
+
+  if (cinemaSection) {
+
+    cinemaSection.scrollIntoView({
+      behavior: "smooth"
+    });
+
+  }
+
+}
+
+    /* 02 — CINEMA SELECTION
+       Paste Cinema Selection JavaScript Here
+    */
+
+
+    /* 03 — GENRE SELECTION
+       Paste Genre Selection JavaScript Here
+    */
+
+
+    /* 04 — QUESTIONNAIRE
+       Paste Questionnaire JavaScript Here
+    */
+
+
+    /* 05 — PHOTO UPLOAD
+       Paste Photo Upload JavaScript Here
+    */
+
+
+    /* 06 — AI API
+       Paste AI Integration Here
+    */
+
+
+    /* 07 — MOVIE RESULT
+       Paste Result Rendering Here
+    */
+
+
+    /* 08 — POSTER GENERATION
+       Paste Image Generation Here
+    */
+
+
+    /* 09 — SHARE FUNCTION
+       Paste Sharing / Download Logic Here
+    */
+
+  </script>
+
+</body>
+</html>
