@@ -1861,7 +1861,82 @@ body.intro-playing {
        Romance / Thriller / Fantasy etc.
        Paste Genre Selection CSS Here
        ========================================= */
+/* =========================================
+   03 — FOCUS THE LENS
+   ========================================= */
 
+.genre-section {
+  position: relative;
+  overflow: hidden;
+  justify-content: center;
+  background: #050711;
+}
+
+.genre-scene {
+  position: absolute;
+  inset: 0;
+  opacity: .35;
+  transition: background 1s ease, filter .6s ease;
+  filter: blur(0);
+}
+
+.viewfinder-noise {
+  position: absolute;
+  inset: 0;
+  opacity: .035;
+  pointer-events: none;
+  background-image:
+    repeating-radial-gradient(
+      circle at 20% 30%,
+      white 0 1px,
+      transparent 1px 5px
+    );
+}
+
+.genre-container {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 950px);
+  text-align: center;
+}
+
+.genre-heading {
+  margin-bottom: 35px;
+}
+
+.genre-heading > p {
+  color: var(--gold);
+  font-size: .62rem;
+  letter-spacing: .4em;
+  margin-bottom: 12px;
+}
+
+.genre-heading h2 {
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  line-height: 1;
+}
+
+.genre-heading h2 em {
+  color: var(--gold);
+  font-weight: 400;
+}
+
+.genre-heading > span {
+  display: block;
+  margin-top: 15px;
+  color: rgba(244,235,221,.5);
+  font-size: .85rem;
+}
+
+
+/* VIEWFINDER */
+
+.viewfinder {
+  position: relative;
+  width: min(100%, 700px);
+  min-height: 340px;
+  margin: auto;
+  border: 1px solid rgba(244,235,221,.3);
 
     /* =========================================
        04 — PERSONALITY EXPERIENCE
@@ -2251,22 +2326,103 @@ body.intro-playing {
 
  </section>
 
-  <!-- ======================================
-       03 — CHOOSE YOUR GENRE
-       ====================================== -->
+<!-- ======================================
+     03 — FOCUS THE LENS / GENRE SELECTION
+     ====================================== -->
 
-  <section id="genre" class="section">
-    <div class="container placeholder">
-      <h2 class="section-title">Choose Your Genre</h2>
-      <p>
-        Romance • Thriller • Fantasy • Action •
-        Mystery • Comedy • Horror • Surprise Me
-      </p>
+<section id="genre" class="section genre-section">
 
-      <!-- PASTE GENRE CARDS HERE -->
+  <div class="genre-scene" id="genreScene"></div>
+  <div class="viewfinder-noise"></div>
+
+  <div class="genre-container">
+
+    <div class="genre-heading">
+      <p>SCENE 02 · THE MOOD</p>
+      <h2>Focus Your <em>Story</em></h2>
+      <span>Turn the lens. Find the worlds your story belongs to.</span>
     </div>
-  </section>
 
+    <!-- CAMERA VIEWFINDER -->
+
+    <div class="viewfinder">
+
+      <div class="camera-top-ui">
+        <span class="genre-rec">● REC</span>
+        <span>AKS CAM · 35MM</span>
+      </div>
+
+      <div class="focus-box">
+        <i></i><i></i><i></i><i></i>
+      </div>
+
+      <div class="genre-display" id="genreDisplay">
+        <span class="focus-status" id="focusStatus">IN FOCUS</span>
+        <h3 id="genreName">ROMANCE</h3>
+        <p id="genreQuote">
+          Some stories begin with a single glance.
+        </p>
+      </div>
+
+      <div class="camera-bottom-ui">
+        <span>ISO 400</span>
+        <span>F 2.8</span>
+        <span>24 FPS</span>
+      </div>
+
+    </div>
+
+
+    <!-- LENS CONTROL -->
+
+    <div class="lens-control">
+
+      <button class="lens-arrow" onclick="changeGenre(-1)">‹</button>
+
+      <div class="lens-dial" id="lensDial" onclick="changeGenre(1)">
+        <div class="dial-ring">
+          <div class="dial-center">
+            <span>TURN</span>
+            <strong>FOCUS</strong>
+          </div>
+        </div>
+      </div>
+
+      <button class="lens-arrow" onclick="changeGenre(1)">›</button>
+
+    </div>
+
+
+    <!-- CAPTURE -->
+
+    <button class="capture-button" id="captureButton" onclick="captureGenre()">
+      <span class="capture-dot"></span>
+      CAPTURE GENRE
+    </button>
+
+
+    <!-- SELECTED GENRES -->
+
+    <div class="captured-area">
+
+      <p>YOUR STORY BLEND · MAX 3</p>
+
+      <div class="captured-genres" id="capturedGenres">
+        <span class="empty-frame">01</span>
+        <span class="empty-frame">02</span>
+        <span class="empty-frame">03</span>
+      </div>
+
+      <button class="lock-genre-button" id="lockGenreButton"
+        onclick="lockGenres()" disabled>
+        DEVELOP MY STORY →
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
 
   <!-- ======================================
        04 — PERSONALITY EXPERIENCE
@@ -2793,9 +2949,197 @@ function enterCinemaWorld() {
 
 }
 
-    /* 03 — GENRE SELECTION
-       Paste Genre Selection JavaScript Here
-    */
+    /* =========================================
+   03 — GENRE SELECTION
+   ========================================= */
+
+const genres = [
+  {
+    name: "ROMANCE",
+    quote: "Some stories begin with a single glance.",
+    background:
+      "radial-gradient(circle at 50% 40%, rgba(166,93,106,.55), transparent 45%)"
+  },
+  {
+    name: "THRILLER",
+    quote: "Some stories don't let you look away.",
+    background:
+      "radial-gradient(circle at 70% 40%, rgba(130,25,35,.5), transparent 45%)"
+  },
+  {
+    name: "MYSTERY",
+    quote: "Some truths were never meant to be found.",
+    background:
+      "radial-gradient(circle at 30% 50%, rgba(70,80,110,.5), transparent 45%)"
+  },
+  {
+    name: "FANTASY",
+    quote: "Reality was only the beginning.",
+    background:
+      "radial-gradient(circle at 50% 30%, rgba(85,65,140,.55), transparent 45%)"
+  },
+  {
+    name: "ACTION",
+    quote: "No pause. No fear. No turning back.",
+    background:
+      "radial-gradient(circle at 50% 60%, rgba(170,75,25,.5), transparent 45%)"
+  },
+  {
+    name: "COMEDY",
+    quote: "Some chaos deserves a laugh track.",
+    background:
+      "radial-gradient(circle at 50% 40%, rgba(190,150,60,.45), transparent 45%)"
+  },
+  {
+    name: "HORROR",
+    quote: "Not every shadow is empty.",
+    background:
+      "radial-gradient(circle at 50% 50%, rgba(75,15,25,.6), transparent 40%)"
+  },
+  {
+    name: "DRAMA",
+    quote: "The quietest moments can change everything.",
+    background:
+      "radial-gradient(circle at 50% 40%, rgba(55,75,100,.5), transparent 45%)"
+  }
+];
+
+let currentGenreIndex = 0;
+let capturedGenreList = [];
+let dialRotation = 0;
+
+
+function changeGenre(direction) {
+
+  currentGenreIndex += direction;
+
+  if (currentGenreIndex < 0) {
+    currentGenreIndex = genres.length - 1;
+  }
+
+  if (currentGenreIndex >= genres.length) {
+    currentGenreIndex = 0;
+  }
+
+  dialRotation += direction * 55;
+
+  document.getElementById("lensDial").style.transform =
+    `rotate(${dialRotation}deg)`;
+
+  const display = document.getElementById("genreDisplay");
+  const status = document.getElementById("focusStatus");
+
+  display.classList.add("focusing");
+  status.textContent = "FOCUSING...";
+
+  setTimeout(() => {
+
+    const genre = genres[currentGenreIndex];
+
+    document.getElementById("genreName").textContent =
+      genre.name;
+
+    document.getElementById("genreQuote").textContent =
+      genre.quote;
+
+    document.getElementById("genreScene").style.background =
+      genre.background;
+
+    display.classList.remove("focusing");
+    status.textContent = "IN FOCUS";
+
+  }, 450);
+}
+
+
+function captureGenre() {
+
+  const genre = genres[currentGenreIndex].name;
+
+  if (capturedGenreList.includes(genre)) return;
+
+  if (capturedGenreList.length >= 3) return;
+
+  capturedGenreList.push(genre);
+
+  renderCapturedGenres();
+}
+
+
+function renderCapturedGenres() {
+
+  const container =
+    document.getElementById("capturedGenres");
+
+  container.innerHTML = "";
+
+  capturedGenreList.forEach((genre, index) => {
+
+    const chip = document.createElement("button");
+
+    chip.className = "genre-chip";
+    chip.textContent = `${String(index + 1).padStart(2, "0")} · ${genre}`;
+
+    chip.onclick = () => {
+
+      capturedGenreList.splice(index, 1);
+
+      renderCapturedGenres();
+
+    };
+
+    container.appendChild(chip);
+
+  });
+
+
+  for (
+    let i = capturedGenreList.length;
+    i < 3;
+    i++
+  ) {
+
+    const empty = document.createElement("span");
+
+    empty.className = "empty-frame";
+    empty.textContent =
+      String(i + 1).padStart(2, "0");
+
+    container.appendChild(empty);
+
+  }
+
+
+  document.getElementById("lockGenreButton").disabled =
+    capturedGenreList.length === 0;
+
+}
+
+
+function lockGenres() {
+
+  localStorage.setItem(
+    "aksGenres",
+    JSON.stringify(capturedGenreList)
+  );
+
+  document
+    .getElementById("questions")
+    .scrollIntoView({
+      behavior: "smooth"
+    });
+
+}
+
+
+/* INITIAL ATMOSPHERE */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  document.getElementById("genreScene").style.background =
+    genres[0].background;
+
+});
 
 
     /* 04 — QUESTIONNAIRE
