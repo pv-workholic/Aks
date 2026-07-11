@@ -1142,7 +1142,719 @@ body.intro-playing {
        Bollywood / Hollywood / Tollywood etc.
        Paste Cinema Selection CSS Here
        ========================================= */
+/* =========================================
+   02 — CHOOSE YOUR CINEMA
+   ========================================= */
 
+.cinema-section {
+  position: relative;
+
+  min-height: 100vh;
+
+  overflow: hidden;
+
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      circle at 50% 55%,
+      rgba(201,164,92,.10),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(166,93,106,.10),
+      transparent 35%
+    ),
+    linear-gradient(
+      180deg,
+      #080b1a,
+      #120b18 55%,
+      #080b1a
+    );
+}
+
+
+/* ATMOSPHERE */
+
+.cinema-atmosphere {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      115deg,
+      transparent 20%,
+      rgba(201,164,92,.035) 40%,
+      transparent 60%
+    );
+
+  animation:
+    cinemaLightMove
+    8s ease-in-out infinite alternate;
+}
+
+
+.cinema-container {
+  position: relative;
+
+  z-index: 2;
+
+  width: min(100%, 1100px);
+
+  margin: auto;
+
+  text-align: center;
+}
+
+
+/* HEADING */
+
+.cinema-heading {
+  margin-bottom: 45px;
+}
+
+
+.cinema-kicker {
+  color: var(--gold);
+
+  font-size: .65rem;
+
+  letter-spacing: .4em;
+
+  margin-bottom: 15px;
+}
+
+
+.cinema-heading h2 {
+  font-size:
+    clamp(3rem, 7vw, 6rem);
+
+  line-height: .95;
+
+  color: var(--ivory);
+}
+
+
+.cinema-heading h2 em {
+  color: var(--gold);
+
+  font-weight: 400;
+}
+
+
+.cinema-heading > p:last-child {
+  max-width: 500px;
+
+  margin:
+    20px auto 0;
+
+  color:
+    rgba(244,235,221,.55);
+
+  line-height: 1.7;
+
+  font-size: .9rem;
+}
+
+
+/* =========================================
+   WHEEL STAGE
+   ========================================= */
+
+.wheel-stage {
+  position: relative;
+
+  width:
+    min(78vw, 520px);
+
+  height:
+    min(78vw, 520px);
+
+  margin:
+    0 auto 35px;
+}
+
+
+/* POINTER */
+
+.wheel-pointer {
+  position: absolute;
+
+  top: -22px;
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  z-index: 20;
+
+  color: var(--gold);
+
+  font-size: 2rem;
+
+  filter:
+    drop-shadow(
+      0 0 12px
+      rgba(201,164,92,.6)
+    );
+}
+
+
+/* MAIN WHEEL */
+
+.cinema-wheel {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 50%;
+
+  border:
+    1px solid
+    rgba(201,164,92,.7);
+
+  background:
+    repeating-conic-gradient(
+      from -30deg,
+
+      rgba(201,164,92,.11)
+      0deg 59deg,
+
+      rgba(36,17,38,.55)
+      59deg 60deg
+    );
+
+  box-shadow:
+    0 0 0 8px
+    rgba(201,164,92,.025),
+
+    0 0 0 9px
+    rgba(201,164,92,.25),
+
+    0 0 70px
+    rgba(201,164,92,.10),
+
+    inset 0 0 80px
+    rgba(0,0,0,.65);
+
+  transition:
+    transform
+    4.5s
+    cubic-bezier(.12,.72,.08,1);
+}
+
+
+/* DECORATIVE RING */
+
+.wheel-ring {
+  position: absolute;
+
+  inset: 7%;
+
+  border-radius: 50%;
+
+  border:
+    1px dashed
+    rgba(201,164,92,.22);
+
+  pointer-events: none;
+}
+
+
+/* CINEMA LABELS */
+
+.cinema-option {
+  position: absolute;
+
+  width: 115px;
+
+  padding: 8px;
+
+  border: none;
+
+  background: transparent;
+
+  color:
+    rgba(244,235,221,.8);
+
+  font-family:
+    var(--font-body);
+
+  font-size: .62rem;
+
+  letter-spacing: .12em;
+
+  text-align: center;
+
+  transition:
+    color .3s ease,
+    transform .3s ease;
+}
+
+
+.cinema-option span {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color:
+    rgba(201,164,92,.5);
+
+  font-family:
+    var(--font-display);
+
+  font-size: 1.2rem;
+}
+
+
+.cinema-option:hover {
+  color: var(--gold);
+
+  transform:
+    scale(1.08);
+}
+
+
+/* POSITION AROUND WHEEL */
+
+.option-1 {
+  top: 8%;
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+}
+
+
+.option-2 {
+  top: 27%;
+  right: 3%;
+}
+
+
+.option-3 {
+  bottom: 18%;
+  right: 8%;
+}
+
+
+.option-4 {
+  bottom: 8%;
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+}
+
+
+.option-5 {
+  bottom: 18%;
+  left: 8%;
+}
+
+
+.option-6 {
+  top: 27%;
+  left: 3%;
+}
+
+
+/* CENTER SPIN BUTTON */
+
+.wheel-center {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform:
+    translate(-50%,-50%);
+
+  width: 30%;
+  height: 30%;
+
+  border-radius: 50%;
+
+  border:
+    1px solid
+    rgba(201,164,92,.65);
+
+  background:
+    radial-gradient(
+      circle,
+      #241126,
+      #080b1a 75%
+    );
+
+  color: var(--ivory);
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  z-index: 10;
+
+  box-shadow:
+    0 0 35px
+    rgba(201,164,92,.16);
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
+}
+
+
+.wheel-center:hover {
+  transform:
+    translate(-50%,-50%)
+    scale(1.06);
+
+  box-shadow:
+    0 0 55px
+    rgba(201,164,92,.28);
+}
+
+
+.reel-icon {
+  color: var(--gold);
+
+  font-size: 1.5rem;
+
+  margin-bottom: 5px;
+}
+
+
+.wheel-center strong {
+  font-family:
+    var(--font-display);
+
+  font-size: 1.4rem;
+
+  letter-spacing: .15em;
+}
+
+
+.wheel-center small {
+  margin-top: 2px;
+
+  color:
+    rgba(244,235,221,.4);
+
+  font-size: .45rem;
+
+  letter-spacing: .25em;
+}
+
+
+/* =========================================
+   CONTROLS
+   ========================================= */
+
+.cinema-controls {
+  text-align: center;
+}
+
+
+.fate-button {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding:
+    15px 28px;
+
+  border:
+    1px solid
+    rgba(201,164,92,.5);
+
+  border-radius: 100px;
+
+  background:
+    rgba(201,164,92,.06);
+
+  color: var(--ivory);
+
+  letter-spacing: .08em;
+
+  transition: .3s ease;
+}
+
+
+.fate-button span {
+  color: var(--gold);
+}
+
+
+.fate-button:hover {
+  background:
+    rgba(201,164,92,.13);
+
+  transform:
+    translateY(-3px);
+}
+
+
+.fate-button:disabled {
+  opacity: .4;
+
+  cursor: not-allowed;
+}
+
+
+.cinema-controls p {
+  margin-top: 13px;
+
+  color:
+    rgba(244,235,221,.3);
+
+  font-size: .65rem;
+
+  letter-spacing: .08em;
+}
+
+
+/* =========================================
+   CINEMA RESULT REVEAL
+   ========================================= */
+
+.cinema-reveal {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 50;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  text-align: center;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(36,17,38,.97),
+      rgba(8,11,26,.99) 70%
+    );
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transform:
+    scale(1.05);
+
+  transition:
+    opacity .8s ease,
+    transform .8s ease,
+    visibility .8s;
+}
+
+
+.cinema-reveal.active {
+  opacity: 1;
+
+  visibility: visible;
+
+  transform:
+    scale(1);
+}
+
+
+.reveal-label {
+  color: var(--gold);
+
+  font-size: .65rem;
+
+  letter-spacing: .4em;
+
+  margin-bottom: 20px;
+}
+
+
+.cinema-reveal h3 {
+  font-family:
+    var(--font-display);
+
+  font-size:
+    clamp(4rem, 12vw, 10rem);
+
+  font-weight: 400;
+
+  line-height: .9;
+
+  color: var(--ivory);
+}
+
+
+.reveal-line {
+  width: 70px;
+  height: 1px;
+
+  margin: 30px auto;
+
+  background: var(--gold);
+}
+
+
+.reveal-description {
+  max-width: 550px;
+
+  color:
+    rgba(244,235,221,.65);
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    clamp(1.2rem,3vw,1.8rem);
+
+  font-style: italic;
+
+  line-height: 1.5;
+}
+
+
+.enter-world-button {
+  display: flex;
+
+  align-items: center;
+
+  gap: 25px;
+
+  margin-top: 40px;
+
+  padding:
+    16px 28px;
+
+  border:
+    1px solid
+    rgba(201,164,92,.6);
+
+  border-radius: 100px;
+
+  background: transparent;
+
+  color: var(--ivory);
+
+  transition: .3s ease;
+}
+
+
+.enter-world-button:hover {
+  background:
+    var(--gold);
+
+  color:
+    var(--midnight);
+}
+
+
+.reveal-close {
+  position: absolute;
+
+  top: 30px;
+  right: 35px;
+
+  border: none;
+
+  background: transparent;
+
+  color:
+    rgba(244,235,221,.5);
+
+  font-size: 2rem;
+}
+
+
+/* =========================================
+   ANIMATIONS
+   ========================================= */
+
+@keyframes cinemaLightMove {
+
+  from {
+    transform:
+      translateX(-8%);
+  }
+
+  to {
+    transform:
+      translateX(8%);
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+  .cinema-section {
+    padding:
+      75px 18px;
+  }
+
+
+  .cinema-heading {
+    margin-bottom:
+      35px;
+  }
+
+
+  .wheel-stage {
+    width: 88vw;
+    height: 88vw;
+
+    max-width: 390px;
+    max-height: 390px;
+  }
+
+
+  .cinema-option {
+    width: 90px;
+
+    font-size: .48rem;
+  }
+
+
+  .cinema-option span {
+    font-size: .9rem;
+  }
+
+
+  .wheel-center strong {
+    font-size: 1rem;
+  }
+
+
+  .wheel-center small {
+    font-size: .35rem;
+  }
+
+
+  .cinema-reveal h3 {
+    font-size:
+      clamp(3.5rem,17vw,6rem);
+  }
+
+}
 
     /* =========================================
        03 — GENRE SELECTION
@@ -1365,22 +2077,179 @@ body.intro-playing {
   </div>
 
 </section>
-  <!-- ======================================
-       02 — CHOOSE YOUR CINEMA
-       ====================================== -->
 
-  <section id="cinema" class="section">
-    <div class="container placeholder">
-      <h2 class="section-title">Choose Your Cinema</h2>
+            <!-- ======================================
+     02 — CHOOSE YOUR CINEMA
+     ====================================== -->
+
+<section id="cinema" class="section cinema-section">
+
+  <div class="cinema-atmosphere"></div>
+
+  <div class="cinema-container">
+
+    <div class="cinema-heading">
+      <p class="cinema-kicker">SCENE 01 · THE WORLD</p>
+      <h2>Choose Your <em>Cinema</em></h2>
       <p>
-        Bollywood • Hollywood • Tollywood •
-        Kollywood • K-Drama • Anime
+        Every world tells a story differently.
+        Where does yours belong?
       </p>
-
-      <!-- PASTE CINEMA CARDS HERE -->
     </div>
-  </section>
 
+
+    <div class="wheel-stage">
+
+      <!-- GOLD POINTER -->
+      <div class="wheel-pointer">
+        <span>▼</span>
+      </div>
+
+
+      <!-- SPINNING WHEEL -->
+      <div class="cinema-wheel" id="cinemaWheel">
+
+        <div class="wheel-ring"></div>
+
+        <!-- CINEMA OPTIONS -->
+
+        <button
+          class="cinema-option option-1"
+          data-cinema="Bollywood"
+          onclick="selectCinema('Bollywood')"
+        >
+          <span>01</span>
+          BOLLYWOOD
+        </button>
+
+
+        <button
+          class="cinema-option option-2"
+          data-cinema="Hollywood"
+          onclick="selectCinema('Hollywood')"
+        >
+          <span>02</span>
+          HOLLYWOOD
+        </button>
+
+
+        <button
+          class="cinema-option option-3"
+          data-cinema="Tollywood"
+          onclick="selectCinema('Tollywood')"
+        >
+          <span>03</span>
+          TOLLYWOOD
+        </button>
+
+
+        <button
+          class="cinema-option option-4"
+          data-cinema="Kollywood"
+          onclick="selectCinema('Kollywood')"
+        >
+          <span>04</span>
+          KOLLYWOOD
+        </button>
+
+
+        <button
+          class="cinema-option option-5"
+          data-cinema="K-Drama"
+          onclick="selectCinema('K-Drama')"
+        >
+          <span>05</span>
+          K-DRAMA
+        </button>
+
+
+        <button
+          class="cinema-option option-6"
+          data-cinema="Anime"
+          onclick="selectCinema('Anime')"
+        >
+          <span>06</span>
+          ANIME
+        </button>
+
+
+        <!-- CENTER -->
+
+        <button
+          class="wheel-center"
+          onclick="spinCinemaWheel()"
+          aria-label="Spin cinema wheel"
+        >
+          <span class="reel-icon">✦</span>
+          <strong>SPIN</strong>
+          <small>THE REEL</small>
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- CONTROLS -->
+
+    <div class="cinema-controls">
+
+      <button
+        class="fate-button"
+        id="spinButton"
+        onclick="spinCinemaWheel()"
+      >
+        <span>✦</span>
+        Let Fate Decide
+      </button>
+
+      <p>or tap a cinema to choose your world</p>
+
+    </div>
+
+  </div>
+
+
+  <!-- RESULT REVEAL -->
+
+  <div
+    class="cinema-reveal"
+    id="cinemaReveal"
+  >
+
+    <button
+      class="reveal-close"
+      onclick="closeCinemaReveal()"
+    >
+      ×
+    </button>
+
+    <p class="reveal-label">
+      YOUR STORY BELONGS TO
+    </p>
+
+    <h3 id="selectedCinema">
+      BOLLYWOOD
+    </h3>
+
+    <div class="reveal-line"></div>
+
+    <p
+      class="reveal-description"
+      id="cinemaDescription"
+    ></p>
+
+    <button
+      class="enter-world-button"
+      onclick="enterCinemaWorld()"
+    >
+      <span>Enter This World</span>
+      <span>→</span>
+    </button>
+
+  </div>
+
+ </section>
 
   <!-- ======================================
        03 — CHOOSE YOUR GENRE
@@ -1686,7 +2555,243 @@ document.addEventListener("DOMContentLoaded", () => {
     /* 02 — CINEMA SELECTION
        Paste Cinema Selection JavaScript Here
     */
+/* =========================================
+   02 — CINEMA SELECTION
+   ========================================= */
 
+let selectedCinema = "";
+
+let cinemaRotation = 0;
+
+let wheelIsSpinning = false;
+
+
+const cinemaData = {
+
+  Bollywood: {
+    angle: 0,
+    description:
+      "Ishq. Drama. Music. And you at the centre of it all."
+  },
+
+  Hollywood: {
+    angle: 60,
+    description:
+      "Big worlds. Bold choices. A story made for the silver screen."
+  },
+
+  Tollywood: {
+    angle: 120,
+    description:
+      "Power. Emotion. Spectacle. Your story, larger than life."
+  },
+
+  Kollywood: {
+    angle: 180,
+    description:
+      "Raw emotion. Unforgettable characters. A story with soul."
+  },
+
+  "K-Drama": {
+    angle: 240,
+    description:
+      "Slow glances. Deep feelings. A story your heart won't forget."
+  },
+
+  Anime: {
+    angle: 300,
+    description:
+      "Limitless worlds. Impossible dreams. Your destiny begins here."
+  }
+
+};
+
+
+/* MANUAL SELECTION */
+
+function selectCinema(cinema) {
+
+  if (wheelIsSpinning) return;
+
+  selectedCinema = cinema;
+
+  showCinemaReveal(cinema);
+
+}
+
+
+/* RANDOM SPIN */
+
+function spinCinemaWheel() {
+
+  if (wheelIsSpinning) return;
+
+
+  wheelIsSpinning = true;
+
+
+  const wheel =
+    document.getElementById("cinemaWheel");
+
+
+  const spinButton =
+    document.getElementById("spinButton");
+
+
+  spinButton.disabled = true;
+
+
+  const cinemas =
+    Object.keys(cinemaData);
+
+
+  const randomIndex =
+    Math.floor(
+      Math.random() *
+      cinemas.length
+    );
+
+
+  selectedCinema =
+    cinemas[randomIndex];
+
+
+  const selectedAngle =
+    cinemaData[
+      selectedCinema
+    ].angle;
+
+
+  /*
+     Several full rotations
+     + final selected position
+  */
+
+  cinemaRotation +=
+    1440 +
+    (360 - selectedAngle);
+
+
+  wheel.style.transform =
+    `rotate(${cinemaRotation}deg)`;
+
+
+  /* SHOW RESULT AFTER SPIN */
+
+  setTimeout(() => {
+
+    wheelIsSpinning = false;
+
+    spinButton.disabled = false;
+
+    showCinemaReveal(
+      selectedCinema
+    );
+
+  }, 4700);
+
+}
+
+
+/* SHOW CINEMA RESULT */
+
+function showCinemaReveal(cinema) {
+
+  const reveal =
+    document.getElementById(
+      "cinemaReveal"
+    );
+
+
+  const title =
+    document.getElementById(
+      "selectedCinema"
+    );
+
+
+  const description =
+    document.getElementById(
+      "cinemaDescription"
+    );
+
+
+  title.textContent =
+    cinema.toUpperCase();
+
+
+  description.textContent =
+    cinemaData[
+      cinema
+    ].description;
+
+
+  reveal.classList.add(
+    "active"
+  );
+
+}
+
+
+/* CLOSE RESULT */
+
+function closeCinemaReveal() {
+
+  document
+    .getElementById(
+      "cinemaReveal"
+    )
+    .classList.remove(
+      "active"
+    );
+
+}
+
+
+/* ENTER SELECTED WORLD */
+
+function enterCinemaWorld() {
+
+  if (!selectedCinema) return;
+
+
+  /*
+     Save choice for later AI generation
+  */
+
+  localStorage.setItem(
+    "aksCinema",
+    selectedCinema
+  );
+
+
+  /*
+     Move to Section 3
+  */
+
+  const genreSection =
+    document.getElementById(
+      "genre"
+    );
+
+
+  document
+    .getElementById(
+      "cinemaReveal"
+    )
+    .classList.remove(
+      "active"
+    );
+
+
+  setTimeout(() => {
+
+    genreSection.scrollIntoView({
+      behavior: "smooth"
+    });
+
+  }, 400);
+
+}
 
     /* 03 — GENRE SELECTION
        Paste Genre Selection JavaScript Here
