@@ -1943,7 +1943,587 @@ body.intro-playing {
        Interactive Questions
        Paste Questionnaire CSS Here
        ========================================= */
+/* =========================================
+   04 — AKS CHARACTER STUDY
+   ========================================= */
 
+.aks-quiz-section {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      circle at 50% 40%,
+      rgba(166, 93, 106, .12),
+      transparent 38%
+    ),
+    #070914;
+}
+
+
+/* FILM GRAIN */
+
+.aks-quiz-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .035;
+
+  background-image:
+    repeating-radial-gradient(
+      circle at 0 0,
+      white 0 1px,
+      transparent 1px 6px
+    );
+}
+
+
+/* FILM FLASH */
+
+.aks-quiz-flash {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+
+  background: var(--ivory);
+
+  opacity: 0;
+  pointer-events: none;
+}
+
+.aks-quiz-flash.active {
+  animation: aksFilmFlash .55s ease;
+}
+
+
+/* MAIN CONTAINER */
+
+.aks-quiz-container {
+  position: relative;
+  z-index: 2;
+
+  width: min(100%, 1100px);
+  margin: auto;
+}
+
+
+/* HEADER */
+
+.aks-quiz-header {
+  margin-bottom: 45px;
+}
+
+.aks-quiz-scene {
+  text-align: center;
+
+  color: var(--gold);
+
+  font-size: .6rem;
+  letter-spacing: .4em;
+
+  margin-bottom: 30px;
+}
+
+.aks-quiz-progress-info {
+  display: flex;
+  justify-content: space-between;
+
+  color: rgba(244, 235, 221, .4);
+
+  font-size: .55rem;
+  letter-spacing: .18em;
+
+  margin-bottom: 10px;
+}
+
+.aks-quiz-progress {
+  width: 100%;
+  height: 1px;
+
+  background:
+    rgba(244, 235, 221, .12);
+}
+
+.aks-quiz-progress-fill {
+  width: 10%;
+  height: 100%;
+
+  background: var(--gold);
+
+  box-shadow:
+    0 0 12px
+    rgba(201, 164, 92, .5);
+
+  transition: width .6s ease;
+}
+
+
+/* QUESTION */
+
+.aks-quiz-question-wrap {
+  text-align: center;
+
+  max-width: 800px;
+
+  margin:
+    0 auto
+    45px;
+}
+
+.aks-quiz-prompt {
+  color:
+    rgba(244, 235, 221, .35);
+
+  font-size: .55rem;
+  letter-spacing: .35em;
+
+  margin-bottom: 15px;
+}
+
+.aks-quiz-question {
+  font-family: var(--font-display);
+
+  font-size:
+    clamp(2.4rem, 5vw, 4.8rem);
+
+  line-height: 1.05;
+
+  font-weight: 400;
+
+  transition:
+    opacity .3s ease,
+    transform .3s ease;
+}
+
+
+/* CHOICES */
+
+.aks-quiz-choices {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  min-height: 340px;
+
+  border:
+    1px solid
+    rgba(201, 164, 92, .22);
+
+  overflow: hidden;
+}
+
+
+/* EACH CHOICE */
+
+.aks-quiz-choice {
+  position: relative;
+
+  border: none;
+  border-radius: 0;
+
+  background:
+    rgba(255, 255, 255, .015);
+
+  color: var(--ivory);
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 45px 30px;
+
+  overflow: hidden;
+
+  transition:
+    transform .55s ease,
+    opacity .55s ease,
+    background .55s ease;
+}
+
+
+/* CINEMATIC BACKGROUNDS */
+
+.aks-quiz-choice-a {
+  border-right:
+    1px solid
+    rgba(201, 164, 92, .18);
+
+  background:
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(166, 93, 106, .18),
+      transparent 55%
+    );
+}
+
+.aks-quiz-choice-b {
+  background:
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(201, 164, 92, .12),
+      transparent 55%
+    );
+}
+
+
+/* MOVING LIGHT */
+
+.aks-quiz-choice::before {
+  content: "";
+
+  position: absolute;
+
+  width: 250px;
+  height: 250px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(201, 164, 92, .07);
+
+  filter: blur(55px);
+
+  transform:
+    translateY(100px);
+
+  transition:
+    transform .7s ease,
+    opacity .7s ease;
+}
+
+.aks-quiz-choice:hover::before {
+  transform:
+    translateY(0)
+    scale(1.4);
+}
+
+
+/* HOVER */
+
+.aks-quiz-choice:hover {
+  background:
+    rgba(201, 164, 92, .07);
+}
+
+
+/* KEY */
+
+.aks-quiz-key {
+  position: absolute;
+
+  top: 20px;
+  left: 22px;
+
+  width: 30px;
+  height: 30px;
+
+  display: grid;
+  place-items: center;
+
+  border:
+    1px solid
+    rgba(201, 164, 92, .35);
+
+  color: var(--gold);
+
+  font-size: .65rem;
+}
+
+
+/* ICON */
+
+.aks-quiz-choice-icon {
+  position: relative;
+
+  font-size: 2.7rem;
+
+  margin-bottom: 20px;
+
+  transition:
+    transform .5s ease;
+}
+
+.aks-quiz-choice:hover
+.aks-quiz-choice-icon {
+  transform:
+    scale(1.2)
+    translateY(-5px);
+}
+
+
+/* MAIN CHOICE TEXT */
+
+.aks-quiz-choice strong {
+  position: relative;
+
+  font-family: var(--font-display);
+
+  font-size:
+    clamp(2.3rem, 5vw, 4rem);
+
+  font-weight: 400;
+
+  letter-spacing: .06em;
+}
+
+
+/* SUBTEXT */
+
+.aks-quiz-choice small {
+  position: relative;
+
+  margin-top: 10px;
+
+  color:
+    rgba(244, 235, 221, .45);
+
+  font-size: .7rem;
+
+  letter-spacing: .08em;
+}
+
+
+/* OR CIRCLE */
+
+.aks-quiz-or {
+  position: absolute;
+
+  z-index: 5;
+
+  top: 50%;
+  left: 50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  width: 55px;
+  height: 55px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  border:
+    1px solid
+    rgba(201, 164, 92, .45);
+
+  background: #090a14;
+
+  color: var(--gold);
+
+  font-family: var(--font-display);
+
+  font-size: .8rem;
+}
+
+
+/* SELECTED ANIMATION */
+
+.aks-quiz-choice.chosen {
+  transform: scale(1.04);
+
+  background:
+    rgba(201, 164, 92, .15);
+}
+
+.aks-quiz-choice.rejected {
+  opacity: .12;
+
+  transform: scale(.94);
+}
+
+
+/* QUESTION EXIT */
+
+.aks-quiz-question.exit {
+  opacity: 0;
+
+  transform:
+    translateY(-15px);
+}
+
+
+/* COMPLETION */
+
+.aks-quiz-complete {
+  display: none;
+
+  text-align: center;
+
+  padding:
+    80px 20px;
+}
+
+.aks-quiz-complete.show {
+  display: block;
+
+  animation:
+    aksCompleteReveal
+    1.2s ease forwards;
+}
+
+.aks-quiz-complete > p {
+  color: var(--gold);
+
+  font-size: .6rem;
+  letter-spacing: .4em;
+
+  margin-bottom: 25px;
+}
+
+.aks-quiz-complete h2 {
+  font-size:
+    clamp(3rem, 7vw, 6rem);
+
+  line-height: .95;
+
+  max-width: 800px;
+
+  margin:
+    0 auto
+    25px;
+}
+
+.aks-quiz-complete h2 em {
+  display: block;
+
+  color: var(--gold);
+
+  font-weight: 400;
+}
+
+.aks-quiz-complete > span {
+  display: block;
+
+  color:
+    rgba(244, 235, 221, .5);
+
+  margin-bottom: 35px;
+}
+
+.aks-quiz-complete button {
+  padding:
+    16px
+    28px;
+
+  border:
+    1px solid
+    rgba(201, 164, 92, .6);
+
+  border-radius: 100px;
+
+  background:
+    rgba(201, 164, 92, .07);
+
+  color: var(--ivory);
+
+  letter-spacing: .1em;
+}
+
+.aks-quiz-complete button b {
+  color: var(--gold);
+
+  margin-left: 15px;
+}
+
+
+/* ANIMATIONS */
+
+@keyframes aksFilmFlash {
+
+  0% {
+    opacity: 0;
+  }
+
+  35% {
+    opacity: .75;
+  }
+
+  100% {
+    opacity: 0;
+  }
+
+}
+
+
+@keyframes aksCompleteReveal {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+  .aks-quiz-section {
+    padding:
+      70px
+      18px;
+  }
+
+  .aks-quiz-header {
+    margin-bottom:
+      30px;
+  }
+
+  .aks-quiz-question-wrap {
+    margin-bottom:
+      30px;
+  }
+
+  .aks-quiz-choices {
+    grid-template-columns:
+      1fr;
+
+    min-height: 500px;
+  }
+
+  .aks-quiz-choice {
+    min-height: 245px;
+
+    padding:
+      35px
+      20px;
+  }
+
+  .aks-quiz-choice-a {
+    border-right: none;
+
+    border-bottom:
+      1px solid
+      rgba(201, 164, 92, .18);
+  }
+
+  .aks-quiz-or {
+    top: 50%;
+  }
+
+  .aks-quiz-choice strong {
+    font-size:
+      2.5rem;
+  }
+
+}
 
     /* =========================================
        05 — PHOTO UPLOAD
@@ -2424,18 +3004,138 @@ body.intro-playing {
 
 </section>
 
-  <!-- ======================================
-       04 — PERSONALITY EXPERIENCE
-       ====================================== -->
+<!-- ======================================
+     04 — CHARACTER STUDY / THIS OR THAT
+     ====================================== -->
 
-  <section id="questions" class="section">
-    <div class="container placeholder">
-      <h2 class="section-title">Tell Us Who You Are</h2>
-      <p>Your personality becomes the screenplay.</p>
+<section id="questions" class="section aks-quiz-section">
 
-      <!-- PASTE QUESTIONNAIRE HERE -->
+  <div class="aks-quiz-grain"></div>
+  <div class="aks-quiz-flash" id="aksQuizFlash"></div>
+
+  <div class="aks-quiz-container">
+
+    <!-- HEADER -->
+    <div class="aks-quiz-header">
+
+      <p class="aks-quiz-scene">
+        SCENE 03 · CHARACTER STUDY
+      </p>
+
+      <div class="aks-quiz-progress-info">
+        <span id="aksQuizCounter">QUESTION 01 / 10</span>
+        <span>AKS PERSONALITY SCAN</span>
+      </div>
+
+      <div class="aks-quiz-progress">
+        <div
+          class="aks-quiz-progress-fill"
+          id="aksQuizProgressFill">
+        </div>
+      </div>
+
     </div>
-  </section>
+
+
+    <!-- QUESTION -->
+    <div class="aks-quiz-question-wrap">
+
+      <p class="aks-quiz-prompt">THIS OR THAT</p>
+
+      <h2
+        class="aks-quiz-question"
+        id="aksQuizQuestion">
+        When everything falls apart,
+        what takes control?
+      </h2>
+
+    </div>
+
+
+    <!-- CHOICES -->
+    <div class="aks-quiz-choices" id="aksQuizChoices">
+
+      <!-- OPTION A -->
+      <button
+        class="aks-quiz-choice aks-quiz-choice-a"
+        id="aksChoiceA"
+        onclick="selectAksChoice('A')">
+
+        <span class="aks-quiz-key">A</span>
+
+        <span
+          class="aks-quiz-choice-icon"
+          id="aksIconA">
+          🔥
+        </span>
+
+        <strong id="aksTextA">CHAOS</strong>
+
+        <small id="aksSubA">
+          Trust the moment
+        </small>
+
+      </button>
+
+
+      <!-- OR -->
+      <div class="aks-quiz-or">
+        <span>OR</span>
+      </div>
+
+
+      <!-- OPTION B -->
+      <button
+        class="aks-quiz-choice aks-quiz-choice-b"
+        id="aksChoiceB"
+        onclick="selectAksChoice('B')">
+
+        <span class="aks-quiz-key">B</span>
+
+        <span
+          class="aks-quiz-choice-icon"
+          id="aksIconB">
+          ♟️
+        </span>
+
+        <strong id="aksTextB">CONTROL</strong>
+
+        <small id="aksSubB">
+          Plan every move
+        </small>
+
+      </button>
+
+    </div>
+
+
+    <!-- COMPLETION SCREEN -->
+    <div
+      class="aks-quiz-complete"
+      id="aksQuizComplete">
+
+      <p>CHARACTER STUDY · COMPLETE</p>
+
+      <h2>
+        We’re beginning to see
+        <em>your Aks.</em>
+      </h2>
+
+      <span>
+        Ten choices. One protagonist.
+        Your story is taking shape.
+      </span>
+
+      <button onclick="finishAksQuiz()">
+        STEP INTO THE FRAME
+        <b>→</b>
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
 
 
   <!-- ======================================
@@ -3142,9 +3842,416 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-    /* 04 — QUESTIONNAIRE
-       Paste Questionnaire JavaScript Here
-    */
+    /* =========================================
+   04 — CHARACTER STUDY
+   ========================================= */
+
+const aksQuizQuestions = [
+
+  {
+    question:
+      "When everything falls apart, what takes control?",
+
+    a: "CHAOS",
+    aSub: "Trust the moment",
+    aIcon: "🔥",
+
+    b: "CONTROL",
+    bSub: "Plan every move",
+    bIcon: "♟️"
+  },
+
+
+  {
+    question:
+      "When the heart and mind disagree, who wins?",
+
+    a: "HEART",
+    aSub: "Feel it completely",
+    aIcon: "♥",
+
+    b: "HEAD",
+    bSub: "Think it through",
+    bIcon: "♟"
+  },
+
+
+  {
+    question:
+      "Someone breaks you. What happens next?",
+
+    a: "REVENGE",
+    aSub: "Some debts must be paid",
+    aIcon: "⚔️",
+
+    b: "FORGIVENESS",
+    bSub: "Some battles deserve peace",
+    bIcon: "🕊️"
+  },
+
+
+  {
+    question:
+      "If you could only chase one, what would it be?",
+
+    a: "LOVE",
+    aSub: "A life shared",
+    aIcon: "♥",
+
+    b: "AMBITION",
+    bSub: "A world conquered",
+    bIcon: "♛"
+  },
+
+
+  {
+    question:
+      "When the world pushes you too far...",
+
+    a: "FIGHT",
+    aSub: "Stand your ground",
+    aIcon: "⚡",
+
+    b: "WALK AWAY",
+    bSub: "Choose your peace",
+    bIcon: "☾"
+  },
+
+
+  {
+    question:
+      "Where does your mind wander most?",
+
+    a: "THE PAST",
+    aSub: "What made you",
+    aIcon: "⌛",
+
+    b: "THE FUTURE",
+    bSub: "What could become",
+    bIcon: "✦"
+  },
+
+
+  {
+    question:
+      "If people remembered you for one thing...",
+
+    a: "FEARED",
+    aSub: "Impossible to challenge",
+    aIcon: "♠",
+
+    b: "LOVED",
+    bSub: "Impossible to forget",
+    bIcon: "✧"
+  },
+
+
+  {
+    question:
+      "Would you rather know something that could destroy everything?",
+
+    a: "THE TRUTH",
+    aSub: "Whatever the cost",
+    aIcon: "◉",
+
+    b: "THE BEAUTIFUL LIE",
+    bSub: "Some illusions are worth keeping",
+    bIcon: "◐"
+  },
+
+
+  {
+    question:
+      "The world is falling apart. You can only save one.",
+
+    a: "EVERYONE",
+    aSub: "Even strangers matter",
+    aIcon: "◎",
+
+    b: "YOUR PERSON",
+    bSub: "The one you cannot lose",
+    bIcon: "♥"
+  },
+
+
+  {
+    question:
+      "How should your story end?",
+
+    a: "HAPPY",
+    aSub: "The light finally wins",
+    aIcon: "☀",
+
+    b: "UNFORGETTABLE",
+    bSub: "Even if it hurts",
+    bIcon: "🎞️"
+  }
+
+];
+
+
+let aksQuizIndex = 0;
+
+let aksQuizAnswers = [];
+
+let aksQuizLocked = false;
+
+
+/* LOAD QUESTION */
+
+function loadAksQuestion() {
+
+  const q =
+    aksQuizQuestions[aksQuizIndex];
+
+
+  document
+    .getElementById("aksQuizQuestion")
+    .textContent =
+      q.question;
+
+
+  document
+    .getElementById("aksTextA")
+    .textContent =
+      q.a;
+
+
+  document
+    .getElementById("aksSubA")
+    .textContent =
+      q.aSub;
+
+
+  document
+    .getElementById("aksIconA")
+    .textContent =
+      q.aIcon;
+
+
+  document
+    .getElementById("aksTextB")
+    .textContent =
+      q.b;
+
+
+  document
+    .getElementById("aksSubB")
+    .textContent =
+      q.bSub;
+
+
+  document
+    .getElementById("aksIconB")
+    .textContent =
+      q.bIcon;
+
+
+  document
+    .getElementById("aksQuizCounter")
+    .textContent =
+
+      `QUESTION ${String(
+        aksQuizIndex + 1
+      ).padStart(2, "0")} / ${aksQuizQuestions.length}`;
+
+
+  document
+    .getElementById("aksQuizProgressFill")
+    .style.width =
+
+      `${
+        (
+          (aksQuizIndex + 1)
+          /
+          aksQuizQuestions.length
+        )
+        *
+        100
+      }%`;
+
+}
+
+
+/* SELECT CHOICE */
+
+function selectAksChoice(choice) {
+
+  if (aksQuizLocked) return;
+
+  aksQuizLocked = true;
+
+
+  const question =
+    aksQuizQuestions[aksQuizIndex];
+
+
+  const selectedAnswer =
+
+    choice === "A"
+      ? question.a
+      : question.b;
+
+
+  aksQuizAnswers.push({
+
+    question:
+      question.question,
+
+    choice:
+      selectedAnswer
+
+  });
+
+
+  const chosen =
+    document.getElementById(
+      choice === "A"
+        ? "aksChoiceA"
+        : "aksChoiceB"
+    );
+
+
+  const rejected =
+    document.getElementById(
+      choice === "A"
+        ? "aksChoiceB"
+        : "aksChoiceA"
+    );
+
+
+  chosen.classList.add("chosen");
+
+  rejected.classList.add("rejected");
+
+
+  /* NEXT QUESTION */
+
+  setTimeout(() => {
+
+    document
+      .getElementById("aksQuizFlash")
+      .classList.add("active");
+
+
+    setTimeout(() => {
+
+      aksQuizIndex++;
+
+
+      chosen.classList.remove("chosen");
+
+      rejected.classList.remove("rejected");
+
+
+      if (
+        aksQuizIndex
+        <
+        aksQuizQuestions.length
+      ) {
+
+        loadAksQuestion();
+
+        aksQuizLocked = false;
+
+      }
+
+      else {
+
+        completeAksQuiz();
+
+      }
+
+    }, 300);
+
+
+    setTimeout(() => {
+
+      document
+        .getElementById("aksQuizFlash")
+        .classList.remove("active");
+
+    }, 600);
+
+
+  }, 650);
+
+}
+
+
+/* COMPLETE */
+
+function completeAksQuiz() {
+
+  localStorage.setItem(
+
+    "aksPersonality",
+
+    JSON.stringify(
+      aksQuizAnswers
+    )
+
+  );
+
+
+  document
+    .getElementById("aksQuizChoices")
+    .style.display =
+      "none";
+
+
+  document
+    .querySelector(
+      ".aks-quiz-question-wrap"
+    )
+    .style.display =
+      "none";
+
+
+  document
+    .querySelector(
+      ".aks-quiz-header"
+    )
+    .style.display =
+      "none";
+
+
+  document
+    .getElementById(
+      "aksQuizComplete"
+    )
+    .classList.add("show");
+
+}
+
+
+/* MOVE TO PHOTO */
+
+function finishAksQuiz() {
+
+  document
+    .getElementById(
+      "photo-upload"
+    )
+    .scrollIntoView({
+
+      behavior:
+        "smooth"
+
+    });
+
+}
+
+
+/* INITIALISE */
+
+document.addEventListener(
+
+  "DOMContentLoaded",
+
+  loadAksQuestion
+
+);
 
 
     /* 05 — PHOTO UPLOAD
