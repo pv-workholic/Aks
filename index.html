@@ -663,6 +663,480 @@
   }
 
   }
+
+/* =========================================
+   AKS — CLAPPERBOARD OPENING
+   ========================================= */
+
+body.intro-playing {
+  overflow: hidden;
+}
+
+#cinematic-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    radial-gradient(circle at center, #18131d 0%, #05060c 70%);
+
+  color: #f4ebdd;
+  overflow: hidden;
+}
+
+#cinematic-intro::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,.018) 0,
+      rgba(255,255,255,.018) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+
+  animation: filmFlicker .18s infinite;
+}
+
+
+/* CAMERA UI */
+
+.camera-ui {
+  position: absolute;
+  top: 28px;
+  left: 35px;
+  right: 35px;
+
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 10px;
+  letter-spacing: .2em;
+  opacity: .65;
+}
+
+.rec {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rec i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #b83a3a;
+
+  animation: recBlink 1s infinite;
+}
+
+
+/* CAMERA CORNERS */
+
+.focus-corner {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  opacity: .4;
+}
+
+.top-left {
+  top: 65px;
+  left: 35px;
+  border-top: 1px solid white;
+  border-left: 1px solid white;
+}
+
+.top-right {
+  top: 65px;
+  right: 35px;
+  border-top: 1px solid white;
+  border-right: 1px solid white;
+}
+
+.bottom-left {
+  bottom: 40px;
+  left: 35px;
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+}
+
+.bottom-right {
+  bottom: 40px;
+  right: 35px;
+  border-bottom: 1px solid white;
+  border-right: 1px solid white;
+}
+
+
+/* CLAPPER */
+
+.clapper-wrapper {
+  width: min(88%, 570px);
+  text-align: center;
+}
+
+.intro-whisper {
+  margin-bottom: 28px;
+
+  color: #c9a45c;
+
+  font-size: 10px;
+  letter-spacing: .45em;
+
+  opacity: 0;
+
+  animation: whisperIn 1s forwards .3s;
+}
+
+.clapperboard {
+  width: 100%;
+
+  transform:
+    translateY(100px)
+    rotate(-3deg);
+
+  opacity: 0;
+
+  animation:
+    boardEntrance
+    1s
+    cubic-bezier(.16,1,.3,1)
+    forwards
+    1s;
+}
+
+
+/* MOVING TOP */
+
+.clapper-top {
+  height: 65px;
+
+  position: relative;
+  z-index: 2;
+
+  transform-origin: left bottom;
+
+  transform: rotate(-18deg);
+
+  background:
+    repeating-linear-gradient(
+      135deg,
+      #eee 0 45px,
+      #111 45px 90px
+    );
+
+  border: 4px solid #111;
+
+  transition:
+    transform
+    .15s
+    cubic-bezier(.5,0,1,1);
+}
+
+.clapper-top.clap {
+  transform: rotate(0deg);
+}
+
+
+/* BOARD */
+
+.board-body {
+  background: #111;
+
+  border:
+    4px solid
+    rgba(244,235,221,.9);
+
+  text-align: left;
+
+  box-shadow:
+    0 30px 80px
+    rgba(0,0,0,.7);
+}
+
+.production {
+  padding: 18px;
+
+  text-align: center;
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    clamp(1.5rem,5vw,2.4rem);
+
+  letter-spacing: .15em;
+
+  border-bottom:
+    1px solid
+    rgba(255,255,255,.5);
+}
+
+.board-row {
+  display: grid;
+}
+
+.board-row.three {
+  grid-template-columns:
+    repeat(3,1fr);
+}
+
+.board-row > div {
+  padding: 14px;
+
+  border-right:
+    1px solid
+    rgba(255,255,255,.4);
+
+  text-align: center;
+}
+
+.board-row > div:last-child {
+  border-right: none;
+}
+
+.board-row small,
+.board-line small {
+  display: block;
+
+  color:
+    rgba(255,255,255,.5);
+
+  font-size: 8px;
+
+  letter-spacing: .2em;
+
+  margin-bottom: 5px;
+}
+
+.board-row strong {
+  font-family:
+    var(--font-display);
+
+  font-size: 1.5rem;
+}
+
+.board-line {
+  display: grid;
+
+  grid-template-columns:
+    120px 1fr;
+
+  padding: 13px 18px;
+
+  border-top:
+    1px solid
+    rgba(255,255,255,.35);
+
+  align-items: center;
+}
+
+.board-line span {
+  font-family:
+    var(--font-display);
+
+  font-size: 1.25rem;
+
+  letter-spacing: .08em;
+}
+
+.board-line.starring span {
+  color: #d9b86c;
+
+  font-size: 1.7rem;
+}
+
+
+/* ACTION */
+
+.action-text {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform:
+    translate(-50%,-50%)
+    scale(.8);
+
+  font-family:
+    var(--font-display);
+
+  font-size:
+    clamp(4rem,15vw,9rem);
+
+  letter-spacing: .12em;
+
+  color: #f4ebdd;
+
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+.action-text.show {
+  animation:
+    actionReveal
+    1.2s
+    ease
+    forwards;
+}
+
+
+/* FLASH */
+
+.intro-flash {
+  position: absolute;
+  inset: 0;
+
+  background: #fff;
+
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+.intro-flash.flash {
+  animation:
+    cameraFlash
+    .45s
+    ease-out;
+}
+
+
+/* INTRO EXIT */
+
+#cinematic-intro.intro-exit {
+  animation:
+    introExit
+    1.2s
+    ease
+    forwards;
+}
+
+
+/* HERO WAITING */
+
+.hero-hidden {
+  visibility: hidden;
+}
+
+.hero-visible {
+  visibility: visible;
+}
+
+
+/* ANIMATIONS */
+
+@keyframes boardEntrance {
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      rotate(0);
+  }
+}
+
+@keyframes whisperIn {
+  to {
+    opacity: .8;
+  }
+}
+
+@keyframes recBlink {
+  50% {
+    opacity: .2;
+  }
+}
+
+@keyframes filmFlicker {
+  50% {
+    opacity: .7;
+  }
+}
+
+@keyframes cameraFlash {
+  0% {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: .95;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes actionReveal {
+  0% {
+    opacity: 0;
+
+    transform:
+      translate(-50%,-50%)
+      scale(.8);
+  }
+
+  35% {
+    opacity: 1;
+
+    transform:
+      translate(-50%,-50%)
+      scale(1);
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translate(-50%,-50%)
+      scale(1.08);
+  }
+}
+
+@keyframes introExit {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+  .clapper-wrapper {
+    width: 90%;
+  }
+
+  .clapper-top {
+    height: 48px;
+  }
+
+  .board-line {
+    grid-template-columns:
+      90px 1fr;
+  }
+
+  .camera-ui {
+    left: 20px;
+    right: 20px;
+  }
+
+}
+    
     /* =========================================
        02 — CINEMA SELECTION
        Bollywood / Hollywood / Tollywood etc.
@@ -774,10 +1248,84 @@
 
 
 <!-- ======================================
-     01 — CINEMATIC LANDING / HERO
+     AKS — CINEMATIC OPENING
      ====================================== -->
 
-<section id="hero" class="section aks-hero">
+<div id="cinematic-intro">
+
+  <div class="camera-ui">
+    <span class="rec"><i></i> REC</span>
+    <span>AKS • 24 FPS</span>
+  </div>
+
+  <div class="focus-corner top-left"></div>
+  <div class="focus-corner top-right"></div>
+  <div class="focus-corner bottom-left"></div>
+  <div class="focus-corner bottom-right"></div>
+
+  <div class="clapper-wrapper">
+
+    <p class="intro-whisper">EVERY STORY BEGINS WITH...</p>
+
+    <div class="clapperboard">
+
+      <div class="clapper-top" id="clapperTop">
+        <div class="stripe"></div>
+      </div>
+
+      <div class="board-body">
+
+        <div class="production">AKS PRODUCTIONS</div>
+
+        <div class="board-row three">
+          <div>
+            <small>SCENE</small>
+            <strong>01</strong>
+          </div>
+
+          <div>
+            <small>TAKE</small>
+            <strong>01</strong>
+          </div>
+
+          <div>
+            <small>ROLL</small>
+            <strong>YOU</strong>
+          </div>
+        </div>
+
+        <div class="board-line">
+          <small>DIRECTOR</small>
+          <span>YOUR CHOICES</span>
+        </div>
+
+        <div class="board-line">
+          <small>PICTURE</small>
+          <span>YOUR STORY</span>
+        </div>
+
+        <div class="board-line starring">
+          <small>STARRING</small>
+          <span>YOU.</span>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="action-text">ACTION.</div>
+
+  </div>
+
+  <div class="intro-flash"></div>
+
+</div>
+
+
+<!-- ======================================
+     01 — AKS HERO
+     ====================================== -->
+
+<section id="hero" class="section aks-hero hero-hidden">
 
   <div class="hero-glow"></div>
   <div class="film-grain"></div>
@@ -805,7 +1353,9 @@
       <span class="button-arrow">→</span>
     </button>
 
-    <p class="hero-note">A cinematic experience created around you</p>
+    <p class="hero-note">
+      A cinematic experience created around you
+    </p>
 
   </div>
 
@@ -1052,6 +1602,86 @@ function beginStory() {
   }
 
 }
+
+    /* =========================================
+   AKS CINEMATIC INTRO
+   ========================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const intro =
+    document.getElementById("cinematic-intro");
+
+  const clapper =
+    document.getElementById("clapperTop");
+
+  const flash =
+    document.querySelector(".intro-flash");
+
+  const action =
+    document.querySelector(".action-text");
+
+  const hero =
+    document.getElementById("hero");
+
+
+  document.body.classList.add("intro-playing");
+
+
+  /* CLAPPER SNAPS */
+
+  setTimeout(() => {
+
+    clapper.classList.add("clap");
+
+  }, 2400);
+
+
+  /* CAMERA FLASH */
+
+  setTimeout(() => {
+
+    flash.classList.add("flash");
+
+  }, 2500);
+
+
+  /* ACTION */
+
+  setTimeout(() => {
+
+    document.querySelector(".clapper-wrapper")
+      .style.opacity = "0";
+
+    action.classList.add("show");
+
+  }, 2900);
+
+
+  /* REVEAL AKS */
+
+  setTimeout(() => {
+
+    intro.classList.add("intro-exit");
+
+    hero.classList.remove("hero-hidden");
+
+    hero.classList.add("hero-visible");
+
+    document.body.classList.remove("intro-playing");
+
+  }, 4000);
+
+
+  /* REMOVE INTRO */
+
+  setTimeout(() => {
+
+    intro.remove();
+
+  }, 5300);
+
+});
 
     /* 02 — CINEMA SELECTION
        Paste Cinema Selection JavaScript Here
