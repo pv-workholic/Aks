@@ -1136,12 +1136,7 @@ body.intro-playing {
   }
 
 }
-    
-    /* =========================================
-       02 — CINEMA SELECTION
-       Bollywood / Hollywood / Tollywood etc.
-       Paste Cinema Selection CSS Here
-       ========================================= */
+
 /* =========================================
    02 — CHOOSE YOUR CINEMA
    ========================================= */
@@ -1861,9 +1856,6 @@ body.intro-playing {
        Romance / Thriller / Fantasy etc.
        Paste Genre Selection CSS Here
        ========================================= */
-/* =========================================
-   03 — FOCUS THE LENS
-   ========================================= */
 
 .genre-section {
   position: relative;
@@ -1943,1300 +1935,857 @@ body.intro-playing {
        Interactive Questions
        Paste Questionnaire CSS Here
        ========================================= */
+
 /* =========================================
-   04 — THE PROJECTION ROOM
+   04 — AKS CHARACTER TEST
    ========================================= */
 
-.aks-projector-section {
+.aks-questionnaire {
   position: relative;
   min-height: 100vh;
   overflow: hidden;
-  justify-content: center;
+  padding: 90px 24px 70px;
 
-  /* WARMER — NOT ANOTHER BLACK SECTION */
   background:
     radial-gradient(
-      circle at 50% 15%,
-      rgba(244, 213, 163, .28),
-      transparent 30%
+      circle at 50% 45%,
+      rgba(166, 93, 106, 0.22),
+      transparent 35%
     ),
     radial-gradient(
-      circle at 10% 70%,
-      rgba(166, 93, 106, .28),
-      transparent 40%
+      circle at 50% 100%,
+      rgba(201, 164, 92, 0.12),
+      transparent 35%
     ),
     linear-gradient(
-      145deg,
-      #6e4550 0%,
-      #422c3c 45%,
-      #281f32 100%
+      180deg,
+      #160d1c 0%,
+      #241126 48%,
+      #100b17 100%
     );
 
-  padding: 90px 24px 120px;
+  color: var(--ivory);
 }
 
 
-/* GOLDEN ATMOSPHERE */
+/* PROJECTOR LIGHT */
 
-.aks-proj-glow {
+.projector-beam {
   position: absolute;
-  width: 800px;
-  height: 500px;
-
-  top: -250px;
-  left: 50%;
-
-  transform: translateX(-50%);
+  width: 80%;
+  height: 75%;
+  top: 22%;
+  left: 10%;
 
   background:
     radial-gradient(
-      circle,
-      rgba(244, 220, 170, .35),
-      transparent 65%
+      ellipse,
+      rgba(226, 185, 105, 0.12),
+      transparent 68%
     );
 
-  filter: blur(50px);
-
-  animation: aksWarmGlow 6s ease-in-out infinite;
+  filter: blur(30px);
+  animation: projectorPulse 4s ease-in-out infinite;
+  pointer-events: none;
 }
 
 
 /* FILM GRAIN */
 
-.aks-proj-grain {
+.question-grain {
   position: absolute;
   inset: 0;
-
-  opacity: .055;
+  opacity: 0.035;
   pointer-events: none;
 
   background-image:
     repeating-radial-gradient(
-      circle at 20% 30%,
-      rgba(255,255,255,.8) 0 1px,
-      transparent 1px 5px
+      circle,
+      rgba(255,255,255,.7) 0 1px,
+      transparent 1px 4px
     );
+
+  background-size: 7px 7px;
 }
 
 
-/* DUST PARTICLES */
-
-.aks-proj-dust {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.aks-dust-particle {
-  position: absolute;
-
-  width: 3px;
-  height: 3px;
-
-  border-radius: 50%;
-
-  background:
-    rgba(255, 232, 190, .6);
-
-  animation:
-    aksDustFloat
-    linear infinite;
-}
-
-
-/* CONTAINER */
-
-.aks-proj-container {
+.questionnaire-shell {
   position: relative;
   z-index: 5;
-
-  width: min(100%, 1100px);
+  width: min(100%, 1050px);
   margin: auto;
 }
 
 
 /* HEADER */
 
-.aks-proj-header {
+.character-header {
   text-align: center;
-  margin-bottom: 45px;
+  margin-bottom: 35px;
 }
 
-.aks-proj-header > p {
-  color: #efd89d;
 
-  font-size: .6rem;
-  letter-spacing: .45em;
-
-  margin-bottom: 18px;
+.scene-label,
+.projector-code {
+  color: var(--gold);
+  font-size: .68rem;
+  letter-spacing: .3em;
 }
 
-.aks-proj-header h2 {
-  font-size:
-    clamp(2.8rem, 6vw, 5.2rem);
 
-  line-height: .95;
+.character-header h2 {
+  max-width: 720px;
+  margin: 18px auto 30px;
 
-  color: #fff4df;
+  font-size: clamp(2.7rem, 6vw, 5rem);
+  line-height: .98;
 }
 
-.aks-proj-header h2 em {
+
+.character-header h2 em {
   display: block;
-
-  color: #e4c27d;
-
+  color: var(--gold);
   font-weight: 400;
 }
 
-.aks-proj-progress {
+
+.film-progress-row {
   display: grid;
-
-  grid-template-columns:
-    auto 1fr auto;
-
+  grid-template-columns: auto 1fr auto;
   align-items: center;
+  gap: 25px;
 
-  gap: 18px;
+  max-width: 720px;
+  margin: auto;
 
-  max-width: 750px;
-
-  margin:
-    30px auto 0;
-
-  font-size: .5rem;
-  letter-spacing: .18em;
-
-  color:
-    rgba(255, 244, 223, .55);
+  color: var(--gold);
+  font-size: .7rem;
+  letter-spacing: .12em;
 }
 
-.aks-proj-progress-track {
-  height: 2px;
 
-  background:
-    rgba(255,255,255,.15);
+.film-progress {
+  height: 3px;
+  background: rgba(201,164,92,.25);
+  overflow: hidden;
 }
 
-#aksProjProgressFill {
+
+#filmProgressFill {
   width: 10%;
   height: 100%;
 
-  background: #efd89d;
-
-  box-shadow:
-    0 0 12px
-    rgba(239, 216, 157, .7);
-
-  transition:
-    width .7s ease;
-}
-
-
-/* =========================================
-   PROJECTOR MACHINE
-   ========================================= */
-
-.aks-projector-machine {
-  position: relative;
-
-  width: 330px;
-  height: 170px;
-
-  margin:
-    0 auto
-    15px;
-
-  z-index: 5;
-}
-
-
-/* PROJECTOR BODY */
-
-.aks-projector-body {
-  position: absolute;
-
-  width: 230px;
-  height: 100px;
-
-  bottom: 0;
-  left: 50%;
-
-  transform:
-    translateX(-50%);
-
-  border-radius:
-    20px 20px 12px 12px;
-
   background:
     linear-gradient(
-      145deg,
-      #493b3a,
-      #211c23
+      90deg,
+      #fff1b7,
+      var(--gold)
     );
 
-  border:
-    1px solid
-    rgba(239, 216, 157, .45);
+  box-shadow:
+    0 0 14px var(--gold);
+
+  transition: width .7s ease;
+}
+
+
+.projector-code {
+  margin-top: 18px;
+  opacity: .7;
+}
+
+
+/* MAIN CINEMA SCREEN */
+
+.cinema-screen {
+  position: relative;
+  min-height: 590px;
+
+  border: 1px solid rgba(201,164,92,.6);
+  border-radius: 35px;
+
+  overflow: hidden;
 
   box-shadow:
-    0 20px 45px
-    rgba(15, 8, 18, .35);
-
-  display: flex;
-  flex-direction: column;
-
-  justify-content: center;
-
-  padding-left: 25px;
-
-  color: #efd89d;
-}
-
-.aks-projector-body > span {
-  font-family:
-    var(--font-display);
-
-  font-size: 2rem;
-
-  letter-spacing: .15em;
-}
-
-.aks-projector-body small {
-  font-size: .4rem;
-
-  letter-spacing: .18em;
-
-  color:
-    rgba(255,255,255,.4);
+    0 35px 80px rgba(0,0,0,.55),
+    inset 0 0 0 10px rgba(0,0,0,.25),
+    0 0 50px rgba(201,164,92,.08);
 }
 
 
-/* LENS */
-
-.aks-projector-lens {
+.screen-background {
   position: absolute;
-
-  width: 65px;
-  height: 65px;
-
-  right: -28px;
-  top: 18px;
-
-  border-radius: 50%;
-
-  padding: 8px;
-
-  background:
-    #17151b;
-
-  border:
-    2px solid
-    #a98a55;
-}
-
-.aks-lens-glass {
-  width: 100%;
-  height: 100%;
-
-  border-radius: 50%;
+  inset: 0;
 
   background:
     radial-gradient(
-      circle at 35% 30%,
-      #fff4c5,
-      #c99c55 18%,
-      #58465c 45%,
-      #171520 75%
+      circle at 25% 45%,
+      rgba(166,93,106,.45),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 80% 40%,
+      rgba(201,164,92,.30),
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #241126,
+      #51303a 50%,
+      #9a684d
     );
 
-  box-shadow:
-    0 0 25px
-    rgba(255, 218, 142, .65);
+  background-size: cover;
+  background-position: center;
 
-  animation:
-    aksLensPulse
-    2s ease-in-out infinite;
+  transform: scale(1.04);
+  transition:
+    opacity .5s ease,
+    transform 1.2s ease;
 }
 
 
-/* REELS */
+.screen-overlay {
+  position: absolute;
+  inset: 0;
 
-.aks-reel {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(8,11,26,.25),
+      rgba(8,11,26,.48)
+    );
+}
+
+
+.recording-ui {
+  position: absolute;
+  z-index: 4;
+  top: 28px;
+  left: 35px;
+  right: 35px;
+
+  display: flex;
+  justify-content: space-between;
+
+  font-size: .8rem;
+  letter-spacing: .12em;
+}
+
+
+.rec i {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+
+  margin-right: 7px;
+  border-radius: 50%;
+
+  background: #ff5757;
+
+  animation: recBlink 1.2s infinite;
+}
+
+
+/* QUESTION */
+
+.question-stage {
+  position: relative;
+  z-index: 3;
+
+  min-height: 590px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 90px 50px 50px;
+  text-align: center;
+}
+
+
+.question-kicker {
+  color: var(--gold);
+
+  font-size: .7rem;
+  letter-spacing: .22em;
+
+  margin-bottom: 15px;
+}
+
+
+#questionText {
+  max-width: 700px;
+
+  font-size: clamp(2.1rem, 5vw, 4rem);
+  line-height: 1;
+
+  margin-bottom: 45px;
+
+  text-shadow:
+    0 5px 25px rgba(0,0,0,.5);
+}
+
+
+/* CHOICES */
+
+.choice-stage {
+  width: min(100%, 780px);
+
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: stretch;
+  gap: 0;
+}
+
+
+.cinema-choice {
+  position: relative;
+
+  min-height: 220px;
+
+  padding: 28px;
+
+  border:
+    1px solid rgba(201,164,92,.7);
+
+  border-radius: 20px;
+
+  background:
+    rgba(24,12,24,.72);
+
+  backdrop-filter: blur(10px);
+
+  color: var(--ivory);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    transform .35s ease,
+    background .35s ease,
+    box-shadow .35s ease;
+}
+
+
+.cinema-choice:hover {
+  transform: translateY(-8px) scale(1.02);
+
+  background:
+    rgba(90,50,50,.72);
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.35),
+    0 0 25px rgba(201,164,92,.18);
+}
+
+
+.cinema-choice.selected {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(166,93,106,.7),
+      rgba(201,164,92,.25)
+    );
+
+  box-shadow:
+    0 0 35px rgba(201,164,92,.35);
+}
+
+
+.choice-number {
+  color: var(--gold);
+  font-size: .75rem;
+  letter-spacing: .2em;
+  margin-bottom: 16px;
+}
+
+
+.cinema-choice strong {
+  font-family: var(--font-display);
+
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+
+  font-weight: 500;
+}
+
+
+.cinema-choice small {
+  max-width: 220px;
+
+  margin-top: 12px;
+
+  color: rgba(244,235,221,.72);
+
+  font-size: .82rem;
+  line-height: 1.5;
+}
+
+
+.choice-symbol {
+  margin-top: 20px;
+  color: var(--gold);
+  font-size: 1.4rem;
+}
+
+
+.or-circle {
+  position: relative;
+  z-index: 5;
+
+  width: 62px;
+  height: 62px;
+
+  align-self: center;
+  margin: 0 -10px;
+
+  border:
+    1px solid var(--gold);
+
+  border-radius: 50%;
+
+  background: #241126;
+
+  display: grid;
+  place-items: center;
+
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+
+  color: var(--gold);
+}
+
+
+/* FILMSTRIP */
+
+.aks-filmstrip {
+  position: relative;
+
+  margin-top: 25px;
+  padding: 28px 18px;
+
+  display: grid;
+  grid-template-columns:
+    1fr 1.2fr 1.2fr 1fr;
+
+  gap: 12px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #160d15,
+      #29151c,
+      #120b12
+    );
+
+  border:
+    1px solid rgba(201,164,92,.35);
+
+  overflow: hidden;
+}
+
+
+.film-holes {
+  position: absolute;
+  left: 0;
+  right: 0;
+
+  height: 8px;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 10px,
+      rgba(201,164,92,.65) 10px 20px,
+      transparent 20px 30px
+    );
+}
+
+
+.film-holes-top {
+  top: 5px;
+}
+
+
+.film-holes-bottom {
+  bottom: 5px;
+}
+
+
+.film-nav,
+.film-frame {
+  min-height: 90px;
+
+  border:
+    1px solid rgba(201,164,92,.35);
+
+  background:
+    rgba(255,255,255,.025);
+
+  color: var(--gold);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  transition: .3s ease;
+}
+
+
+.film-nav:hover,
+.film-frame.active {
+  border-color: var(--gold);
+
+  box-shadow:
+    inset 0 0 25px rgba(201,164,92,.1),
+    0 0 18px rgba(201,164,92,.12);
+}
+
+
+.film-frame span {
+  font-size: .55rem;
+  letter-spacing: .15em;
+  opacity: .6;
+}
+
+
+.film-frame strong {
+  margin-top: 8px;
+  font-size: .75rem;
+  letter-spacing: .1em;
+}
+
+
+/* FOOTER CONSOLE */
+
+.character-footer {
+  margin-top: 35px;
+  text-align: center;
+}
+
+
+.character-footer > p {
+  color: var(--gold);
+  letter-spacing: .25em;
+  font-size: .65rem;
+}
+
+
+.projector-console {
+  max-width: 760px;
+  margin: 30px auto 0;
+
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 25px;
+
+  padding: 25px;
+
+  border:
+    1px solid rgba(201,164,92,.3);
+
+  background:
+    rgba(10,7,14,.5);
+}
+
+
+.console-note {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+
+.console-note small {
+  color: var(--gold);
+  letter-spacing: .1em;
+}
+
+
+.console-note span {
+  font-family: var(--font-display);
+  color: rgba(244,235,221,.6);
+}
+
+
+.projector-button {
+  width: 85px;
+  height: 85px;
+
+  border-radius: 50%;
+
+  border:
+    1px solid var(--gold);
+
+  background:
+    radial-gradient(
+      circle,
+      #6d4728,
+      #241126 65%
+    );
+
+  color: var(--gold);
+
+  font-size: 1.5rem;
+
+  box-shadow:
+    0 0 25px rgba(201,164,92,.25);
+
+  transition: .35s ease;
+}
+
+
+.projector-button:hover {
+  transform: scale(1.08);
+
+  box-shadow:
+    0 0 45px rgba(201,164,92,.45);
+}
+
+
+/* DECORATIVE FILM REELS */
+
+.cinema-reel {
   position: absolute;
 
-  width: 115px;
-  height: 115px;
+  width: 260px;
+  height: 260px;
 
-  top: 0;
+  border:
+    4px solid rgba(201,164,92,.45);
 
   border-radius: 50%;
 
   background:
     radial-gradient(
       circle,
-      #1b1820 0 16%,
-      #a68b68 17% 20%,
-      #29242b 21% 100%
+      #33231d,
+      #120b12 68%
     );
 
-  border:
-    3px solid
-    #b79a6d;
-
-  box-shadow:
-    0 12px 25px
-    rgba(0,0,0,.25);
+  opacity: .6;
 
   animation:
-    aksReelSpin
-    7s linear infinite;
+    reelSpin 25s linear infinite;
 }
 
-.aks-reel-left {
-  left: 35px;
+
+.reel-left {
+  left: -120px;
+  top: 80px;
 }
 
-.aks-reel-right {
-  right: 35px;
 
-  animation-direction:
-    reverse;
+.reel-right {
+  right: -120px;
+  top: 120px;
 }
 
-.aks-reel-hole {
+
+.reel-hole {
   position: absolute;
 
-  width: 28px;
-  height: 28px;
+  width: 65px;
+  height: 65px;
 
   border-radius: 50%;
 
-  background: #6e4550;
+  background: #080B1A;
 
   border:
-    1px solid
-    rgba(255,255,255,.12);
+    2px solid rgba(201,164,92,.3);
 }
 
-.hole-1 {
-  top: 12px;
-  left: 43px;
+
+.reel-hole.h1 {
+  top: 25px;
+  left: 97px;
 }
 
-.hole-2 {
-  top: 43px;
-  right: 12px;
+
+.reel-hole.h2 {
+  top: 97px;
+  right: 25px;
 }
 
-.hole-3 {
-  bottom: 12px;
-  left: 43px;
+
+.reel-hole.h3 {
+  bottom: 25px;
+  left: 97px;
 }
 
-.hole-4 {
-  top: 43px;
-  left: 12px;
+
+.reel-hole.h4 {
+  top: 97px;
+  left: 25px;
 }
 
-.aks-reel-center {
+
+.reel-center {
   position: absolute;
 
-  width: 16px;
-  height: 16px;
+  width: 35px;
+  height: 35px;
+
+  border-radius: 50%;
+
+  background: var(--gold);
 
   top: 50%;
   left: 50%;
 
   transform:
     translate(-50%, -50%);
-
-  border-radius: 50%;
-
-  background: #efd89d;
 }
 
 
-/* PROJECTOR BEAM */
+/* TRANSITION */
 
-.aks-projector-beam {
-  width: 70%;
-
-  height: 90px;
-
-  margin:
-    -30px auto
-    -45px;
-
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(255, 229, 175, .22),
-      rgba(255, 229, 175, .04)
-    );
-
-  clip-path:
-    polygon(
-      45% 0,
-      55% 0,
-      100% 100%,
-      0 100%
-    );
-
-  filter:
-    blur(5px);
-
-  animation:
-    aksBeamFlicker
-    3s infinite;
-}
-
-
-/* =========================================
-   CINEMA SCREEN
-   ========================================= */
-
-.aks-projection-screen {
-  position: relative;
-
-  min-height: 520px;
-
-  overflow: hidden;
-
-  border-radius:
-    5px;
-
-  border:
-    8px solid
-    rgba(245, 223, 183, .75);
-
-  outline:
-    1px solid
-    rgba(255,255,255,.2);
-
-  background: #d9b98b;
-
-  box-shadow:
-    0 30px 80px
-    rgba(25, 10, 24, .35),
-    0 0 80px
-    rgba(255, 222, 160, .12);
-}
-
-
-/* SCENE IMAGE */
-
-.aks-scene-image {
-  position: absolute;
-  inset: -20px;
-
-  background-position:
-    center;
-
-  background-size:
-    cover;
-
-  transform:
-    scale(1.05);
-
-  transition:
-    background-image .7s ease;
-
-  animation:
-    aksSceneDrift
-    12s ease-in-out infinite alternate;
-}
-
-
-/* WARM IMAGE GRADING */
-
-.aks-scene-overlay {
-  position: absolute;
-  inset: 0;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(66, 35, 52, .82),
-      rgba(66, 35, 52, .42) 45%,
-      rgba(43, 30, 48, .75)
-    );
-}
-
-
-/* SCREEN UI */
-
-.aks-screen-top {
-  position: absolute;
-
-  z-index: 4;
-
-  top: 20px;
-  left: 25px;
-  right: 25px;
-
-  display: flex;
-  justify-content: space-between;
-
-  font-size: .5rem;
-  letter-spacing: .25em;
-
-  color:
-    rgba(255, 244, 223, .65);
-}
-
-.aks-screen-top span:first-child {
-  color: #f4a0a0;
-}
-
-
-/* QUESTION CONTENT */
-
-.aks-scene-content {
-  position: relative;
-
-  z-index: 3;
-
-  min-height: 520px;
-
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-  justify-content: center;
-
-  padding:
-    75px
-    50px
-    50px;
-
-  text-align: center;
-}
-
-.aks-scene-eyebrow {
-  color: #efd89d;
-
-  font-size: .55rem;
-  letter-spacing: .4em;
-
-  margin-bottom: 18px;
-}
-
-.aks-scene-content h3 {
-  max-width: 850px;
-
-  font-family:
-    var(--font-display);
-
-  font-size:
-    clamp(2.7rem, 6vw, 5.3rem);
-
-  line-height: .95;
-
-  font-weight: 500;
-
-  text-shadow:
-    0 5px 25px
-    rgba(0,0,0,.3);
-
-  margin-bottom: 45px;
-}
-
-
-/* CHOICES */
-
-.aks-scene-choices {
-  position: relative;
-
-  width:
-    min(100%, 850px);
-
-  display: grid;
-
-  grid-template-columns:
-    1fr auto 1fr;
-
-  align-items: stretch;
-
-  gap: 15px;
-}
-
-.aks-scene-choice {
-  position: relative;
-
-  min-height: 135px;
-
-  border:
-    1px solid
-    rgba(255, 231, 185, .4);
-
-  border-radius: 4px;
-
-  background:
-    rgba(35, 20, 35, .42);
-
-  backdrop-filter:
-    blur(8px);
-
-  color: #fff4df;
-
-  padding:
-    25px 20px;
-
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-  justify-content: center;
-
-  overflow: hidden;
-
-  transition:
-    transform .45s ease,
-    background .45s ease,
-    border-color .45s ease;
-}
-
-
-/* LIGHT SWEEP */
-
-.aks-scene-choice::before {
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  background:
-    linear-gradient(
-      110deg,
-      transparent 25%,
-      rgba(255, 225, 165, .18),
-      transparent 75%
-    );
-
-  transform:
-    translateX(-120%);
-
-  transition:
-    transform .7s ease;
-}
-
-.aks-scene-choice:hover::before {
-  transform:
-    translateX(120%);
-}
-
-.aks-scene-choice:hover {
-  transform:
-    translateY(-7px);
-
-  background:
-    rgba(119, 72, 81, .6);
-
-  border-color:
-    #efd89d;
-
-  box-shadow:
-    0 15px 35px
-    rgba(0,0,0,.2);
-}
-
-.aks-choice-number {
-  position: absolute;
-
-  top: 10px;
-  left: 12px;
-
-  color:
-    rgba(239,216,157,.55);
-
-  font-size: .5rem;
-}
-
-.aks-scene-choice strong {
-  position: relative;
-
-  font-family:
-    var(--font-display);
-
-  font-size:
-    clamp(1.3rem, 3vw, 2rem);
-
-  font-weight: 500;
-
-  letter-spacing: .04em;
-}
-
-.aks-scene-choice small {
-  position: relative;
-
-  margin-top: 7px;
-
-  color:
-    rgba(255,244,223,.58);
-
-  font-size: .62rem;
-
-  letter-spacing: .05em;
-}
-
-
-/* OR */
-
-.aks-choice-divider {
-  display: grid;
-  place-items: center;
-}
-
-.aks-choice-divider span {
-  width: 45px;
-  height: 45px;
-
-  display: grid;
-  place-items: center;
-
-  border-radius: 50%;
-
-  background:
-    #efd89d;
-
-  color:
-    #3e2938;
-
-  font-family:
-    var(--font-display);
-
-  font-weight: 700;
-}
-
-
-/* SELECTED */
-
-.aks-scene-choice.projected-selected {
-  transform:
-    scale(1.05);
-
-  background:
-    rgba(239, 216, 157, .28);
-
-  border-color:
-    #fff0c7;
-}
-
-.aks-scene-choice.projected-rejected {
-  opacity: .15;
-
-  transform:
-    scale(.94);
-}
-
-
-/* VIEWFINDER CORNERS */
-
-.aks-corner {
-  position: absolute;
-
-  z-index: 5;
-
-  width: 28px;
-  height: 28px;
-}
-
-.corner-tl {
-  top: 15px;
-  left: 15px;
-
-  border-top:
-    1px solid #efd89d;
-
-  border-left:
-    1px solid #efd89d;
-}
-
-.corner-tr {
-  top: 15px;
-  right: 15px;
-
-  border-top:
-    1px solid #efd89d;
-
-  border-right:
-    1px solid #efd89d;
-}
-
-.corner-bl {
-  bottom: 15px;
-  left: 15px;
-
-  border-bottom:
-    1px solid #efd89d;
-
-  border-left:
-    1px solid #efd89d;
-}
-
-.corner-br {
-  bottom: 15px;
-  right: 15px;
-
-  border-bottom:
-    1px solid #efd89d;
-
-  border-right:
-    1px solid #efd89d;
-}
-
-
-/* =========================================
-   FILM STRIP
-   ========================================= */
-
-.aks-film-strip {
-  margin-top: 25px;
-
-  overflow: hidden;
-
-  background:
-    #2c2229;
-
-  border:
-    1px solid
-    rgba(239,216,157,.25);
-
-  padding:
-    9px 0;
-}
-
-.aks-film-holes {
-  height: 8px;
-
-  background:
-    repeating-linear-gradient(
-      90deg,
-      transparent 0 12px,
-      #caa778 12px 24px,
-      transparent 24px 35px
-    );
-
-  opacity: .55;
-}
-
-.aks-film-frames {
-  display: grid;
-
-  grid-template-columns:
-    1fr 1.4fr 1fr;
-
-  gap: 5px;
-
-  padding:
-    6px 25px;
-}
-
-.aks-film-frame {
-  min-height: 48px;
-
-  display: grid;
-  place-items: center;
-
-  border:
-    1px solid
-    rgba(239,216,157,.2);
-
-  font-size: .5rem;
-
-  letter-spacing: .2em;
-}
-
-.aks-film-frame.active {
-  background:
-    rgba(239,216,157,.12);
-
-  color: #efd89d;
-}
-
-.aks-film-frame.faded {
-  color:
-    rgba(255,255,255,.25);
-}
-
-
-/* INSTRUCTION */
-
-.aks-proj-instruction {
-  text-align: center;
-
-  margin-top: 20px;
-
-  color:
-    rgba(255,244,223,.45);
-
-  font-size: .5rem;
-
-  letter-spacing: .3em;
-}
-
-
-/* =========================================
-   TRANSITION
-   ========================================= */
-
-.aks-proj-transition {
-  position: fixed;
-
-  inset: 0;
-
-  z-index: 999;
-
-  pointer-events: none;
-
-  background:
-    #f1d9a8;
-
-  display: grid;
-  place-items: center;
-
+.cinema-screen.changing
+.screen-background {
   opacity: 0;
-
-  transform:
-    translateY(100%);
-
-  transition:
-    transform .5s ease,
-    opacity .4s ease;
-}
-
-.aks-proj-transition span {
-  color: #432d3c;
-
-  font-family:
-    var(--font-display);
-
-  font-size:
-    clamp(2rem, 6vw, 5rem);
-
-  letter-spacing: .15em;
-}
-
-.aks-proj-transition.active {
-  opacity: 1;
-
-  transform:
-    translateY(0);
+  transform: scale(1.12);
 }
 
 
-/* =========================================
-   COMPLETE
-   ========================================= */
-
-.aks-proj-complete {
-  display: none;
-
-  text-align: center;
-
-  padding:
-    80px 20px;
-}
-
-.aks-proj-complete.show {
-  display: block;
-
+.cinema-screen.changing
+.question-stage {
   animation:
-    aksCompleteRise
-    1.2s ease;
-}
-
-.aks-complete-reel {
-  width: 120px;
-  height: 120px;
-
-  margin:
-    0 auto 30px;
-
-  border-radius: 50%;
-
-  border:
-    2px dashed #efd89d;
-
-  display: grid;
-  place-items: center;
-
-  animation:
-    aksReelSpin
-    8s linear infinite;
-}
-
-.aks-complete-reel-inner {
-  width: 75px;
-  height: 75px;
-
-  border-radius: 50%;
-
-  background:
-    rgba(239,216,157,.15);
-
-  display: grid;
-  place-items: center;
-
-  color: #efd89d;
-
-  font-family:
-    var(--font-display);
-
-  font-size: 1.5rem;
-}
-
-.aks-proj-complete > p {
-  color: #efd89d;
-
-  font-size: .55rem;
-  letter-spacing: .4em;
-}
-
-.aks-proj-complete h2 {
-  margin:
-    20px auto;
-
-  font-size:
-    clamp(3rem, 7vw, 6rem);
-
-  line-height: .95;
-}
-
-.aks-proj-complete h2 em {
-  display: block;
-
-  color: #efd89d;
-}
-
-.aks-proj-complete > span {
-  display: block;
-
-  max-width: 550px;
-
-  margin:
-    0 auto
-    35px;
-
-  line-height: 1.8;
-
-  color:
-    rgba(255,244,223,.6);
-}
-
-.aks-proj-complete button {
-  padding:
-    16px 28px;
-
-  border:
-    1px solid #efd89d;
-
-  border-radius: 100px;
-
-  background:
-    #efd89d;
-
-  color:
-    #3f2938;
-
-  font-weight: 600;
-}
-
-.aks-proj-complete button b {
-  margin-left: 15px;
+    frameFlash .55s ease;
 }
 
 
-/* =========================================
-   ANIMATIONS
-   ========================================= */
+/* ANIMATIONS */
 
-@keyframes aksReelSpin {
+@keyframes reelSpin {
 
   to {
-    transform:
-      rotate(360deg);
+    transform: rotate(360deg);
   }
 
 }
 
-@keyframes aksWarmGlow {
 
-  50% {
-    opacity: .6;
+@keyframes projectorPulse {
 
-    transform:
-      translateX(-50%)
-      scale(1.15);
-  }
-
-}
-
-@keyframes aksLensPulse {
-
-  50% {
-    box-shadow:
-      0 0 40px
-      rgba(255,218,142,.9);
-  }
-
-}
-
-@keyframes aksBeamFlicker {
-
-  0%, 100% {
+  0%,
+  100% {
     opacity: .55;
   }
 
-  48% {
-    opacity: .8;
+  50% {
+    opacity: 1;
   }
+
+}
+
+
+@keyframes recBlink {
 
   50% {
-    opacity: .45;
-  }
-
-  52% {
-    opacity: .85;
+    opacity: .25;
   }
 
 }
 
-@keyframes aksSceneDrift {
 
-  from {
-    transform:
-      scale(1.05)
-      translateX(-5px);
-  }
+@keyframes frameFlash {
 
-  to {
-    transform:
-      scale(1.12)
-      translateX(8px);
-  }
-
-}
-
-@keyframes aksDustFloat {
-
-  from {
-    transform:
-      translateY(100vh)
-      translateX(0);
-
-    opacity: 0;
-  }
-
-  20% {
-    opacity: .8;
-  }
-
-  to {
-    transform:
-      translateY(-100px)
-      translateX(80px);
-
-    opacity: 0;
-  }
-
-}
-
-@keyframes aksCompleteRise {
-
-  from {
-    opacity: 0;
-
-    transform:
-      translateY(30px);
-  }
-
-  to {
+  0% {
     opacity: 1;
+  }
 
-    transform:
-      translateY(0);
+  45% {
+    opacity: .15;
+  }
+
+  100% {
+    opacity: 1;
   }
 
 }
 
 
-/* =========================================
-   MOBILE
-   ========================================= */
+/* MOBILE */
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
 
-  .aks-projector-section {
+  .aks-questionnaire {
     padding:
-      70px
-      16px
-      90px;
+      70px 16px 50px;
   }
 
-  .aks-proj-progress {
-    grid-template-columns:
-      1fr;
 
-    gap: 8px;
+  .cinema-reel {
+    width: 150px;
+    height: 150px;
 
-    text-align: center;
+    opacity: .28;
   }
 
-  .aks-projector-machine {
-    transform:
-      scale(.78);
 
-    margin-top:
-      -15px;
-
-    margin-bottom:
-      -5px;
+  .film-progress-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
 
-  .aks-projection-screen {
-    min-height:
-      610px;
 
-    border-width:
-      5px;
+  .cinema-screen {
+    min-height: 650px;
+    border-radius: 24px;
   }
 
-  .aks-scene-content {
-    min-height:
-      610px;
+
+  .question-stage {
+    min-height: 650px;
 
     padding:
-      65px
-      18px
-      30px;
+      85px 18px 35px;
   }
 
-  .aks-scene-content h3 {
-    margin-bottom:
-      30px;
+
+  .choice-stage {
+    grid-template-columns: 1fr;
+    gap: 14px;
   }
 
-  .aks-scene-choices {
+
+  .cinema-choice {
+    min-height: 155px;
+  }
+
+
+  .or-circle {
+    width: 48px;
+    height: 48px;
+
+    margin:
+      -12px auto;
+  }
+
+
+  .aks-filmstrip {
     grid-template-columns:
-      1fr;
-
-    gap: 12px;
+      1fr 1fr;
   }
 
-  .aks-choice-divider span {
-    width: 38px;
-    height: 38px;
+
+  .projector-console {
+    grid-template-columns: 1fr;
   }
 
-  .aks-scene-choice {
-    min-height:
-      110px;
+
+  .recording-ui {
+    left: 20px;
+    right: 20px;
   }
 
-} 
+}
 
     /* =========================================
        05 — PHOTO UPLOAD
@@ -3720,224 +3269,218 @@ body.intro-playing {
 <!-- ======================================
      04 — THE PROJECTION ROOM
      ====================================== -->
+<!-- ======================================
+     04 — THE CHARACTER TEST
+     ====================================== -->
 
-<section id="questions" class="section aks-projector-section">
+<section id="questions" class="aks-questionnaire">
 
-  <!-- ATMOSPHERE -->
-  <div class="aks-proj-glow"></div>
-  <div class="aks-proj-grain"></div>
-  <div class="aks-proj-dust" id="aksProjDust"></div>
-
-  <!-- TRANSITION CURTAIN -->
-  <div class="aks-proj-transition" id="aksProjTransition">
-    <span>ROLLING...</span>
+  <!-- Decorative cinema machinery -->
+  <div class="cinema-reel reel-left">
+    <div class="reel-hole h1"></div>
+    <div class="reel-hole h2"></div>
+    <div class="reel-hole h3"></div>
+    <div class="reel-hole h4"></div>
+    <div class="reel-center"></div>
   </div>
 
-  <div class="aks-proj-container">
+  <div class="cinema-reel reel-right">
+    <div class="reel-hole h1"></div>
+    <div class="reel-hole h2"></div>
+    <div class="reel-hole h3"></div>
+    <div class="reel-hole h4"></div>
+    <div class="reel-center"></div>
+  </div>
+
+  <div class="projector-beam"></div>
+  <div class="question-grain"></div>
+
+  <div class="questionnaire-shell">
 
     <!-- HEADER -->
-    <header class="aks-proj-header">
-      <p>SCENE 03 · THE CHARACTER TEST</p>
+    <header class="character-header">
+      <p class="scene-label">
+        SCENE 03 · THE CHARACTER TEST
+      </p>
 
       <h2>
         Every choice reveals
         <em>a little more of you.</em>
       </h2>
 
-      <div class="aks-proj-progress">
-        <span id="aksProjCounter">FRAME 01 / 10</span>
+      <div class="film-progress-row">
+        <span id="frameCount">FRAME 01 / 10</span>
 
-        <div class="aks-proj-progress-track">
-          <div id="aksProjProgressFill"></div>
+        <div class="film-progress">
+          <div id="filmProgressFill"></div>
         </div>
 
         <span>AKS FILM · 35MM</span>
       </div>
+
+      <p class="projector-code">
+        AKS MEMORY PROJECTOR · 03
+      </p>
     </header>
 
 
-    <!-- PROJECTOR MACHINE -->
-    <div class="aks-projector-machine">
+    <!-- MAIN CINEMA SCREEN -->
+    <div class="cinema-screen" id="cinemaScreen">
 
-      <!-- LEFT REEL -->
-      <div class="aks-reel aks-reel-left">
-        <div class="aks-reel-hole hole-1"></div>
-        <div class="aks-reel-hole hole-2"></div>
-        <div class="aks-reel-hole hole-3"></div>
-        <div class="aks-reel-hole hole-4"></div>
-        <div class="aks-reel-center"></div>
-      </div>
-
-      <!-- RIGHT REEL -->
-      <div class="aks-reel aks-reel-right">
-        <div class="aks-reel-hole hole-1"></div>
-        <div class="aks-reel-hole hole-2"></div>
-        <div class="aks-reel-hole hole-3"></div>
-        <div class="aks-reel-hole hole-4"></div>
-        <div class="aks-reel-center"></div>
-      </div>
-
-      <div class="aks-projector-body">
-        <span>AKS</span>
-        <small>MEMORY PROJECTOR · 03</small>
-
-        <div class="aks-projector-lens">
-          <div class="aks-lens-glass"></div>
-        </div>
-      </div>
-
-    </div>
-
-
-    <!-- PROJECTOR LIGHT -->
-    <div class="aks-projector-beam"></div>
-
-
-    <!-- CINEMA SCREEN -->
-    <div class="aks-projection-screen" id="aksProjectionScreen">
-
-      <!-- IMAGE -->
       <div
-        class="aks-scene-image"
-        id="aksSceneImage">
+        class="screen-background"
+        id="questionBackground">
       </div>
 
-      <div class="aks-scene-overlay"></div>
+      <div class="screen-overlay"></div>
 
-      <!-- SCREEN UI -->
-      <div class="aks-screen-top">
-        <span>● REC</span>
-        <span id="aksSceneNumber">TAKE 01</span>
+      <div class="recording-ui">
+        <span class="rec">
+          <i></i> REC
+        </span>
+
+        <span id="takeNumber">
+          TAKE 01
+        </span>
       </div>
+
 
       <!-- QUESTION -->
-      <div class="aks-scene-content">
+      <div class="question-stage">
 
-        <p class="aks-scene-eyebrow" id="aksSceneEyebrow">
-          YOUR STORY PAUSES HERE
+        <p
+          class="question-kicker"
+          id="questionKicker">
         </p>
 
-        <h3 id="aksProjQuestion">
-          When everything falls apart,
-          what takes control?
-        </h3>
+        <h3 id="questionText"></h3>
 
-        <!-- CHOICES -->
-        <div class="aks-scene-choices">
+
+        <div class="choice-stage">
 
           <button
-            class="aks-scene-choice"
-            id="aksProjChoiceA"
-            onclick="chooseProjectedAnswer('A')">
+            class="cinema-choice choice-a"
+            id="choiceA"
+            onclick="selectAksAnswer(0)">
 
-            <span class="aks-choice-number">01</span>
+            <span class="choice-number">
+              01
+            </span>
 
-            <strong id="aksProjTextA">
-              EMBRACE THE CHAOS
-            </strong>
+            <strong id="choiceATitle"></strong>
 
-            <small id="aksProjSubA">
-              Trust whatever happens next
-            </small>
+            <small id="choiceADescription"></small>
+
+            <span class="choice-symbol">
+              ✦
+            </span>
 
           </button>
 
 
-          <div class="aks-choice-divider">
-            <span>OR</span>
+          <div class="or-circle">
+            OR
           </div>
 
 
           <button
-            class="aks-scene-choice"
-            id="aksProjChoiceB"
-            onclick="chooseProjectedAnswer('B')">
+            class="cinema-choice choice-b"
+            id="choiceB"
+            onclick="selectAksAnswer(1)">
 
-            <span class="aks-choice-number">02</span>
+            <span class="choice-number">
+              02
+            </span>
 
-            <strong id="aksProjTextB">
-              TAKE CONTROL
-            </strong>
+            <strong id="choiceBTitle"></strong>
 
-            <small id="aksProjSubB">
-              Every move has a reason
-            </small>
+            <small id="choiceBDescription"></small>
+
+            <span class="choice-symbol">
+              ◇
+            </span>
 
           </button>
 
         </div>
 
       </div>
-
-      <!-- FRAME CORNERS -->
-      <i class="aks-corner corner-tl"></i>
-      <i class="aks-corner corner-tr"></i>
-      <i class="aks-corner corner-bl"></i>
-      <i class="aks-corner corner-br"></i>
-
     </div>
 
 
     <!-- FILM STRIP -->
-    <div class="aks-film-strip">
+    <div class="aks-filmstrip">
 
-      <div class="aks-film-holes top-holes"></div>
+      <div class="film-holes film-holes-top"></div>
 
-      <div class="aks-film-frames">
+      <button
+        class="film-nav"
+        onclick="previousAksQuestion()">
+        ← PREVIOUS
+      </button>
 
-        <div class="aks-film-frame faded">
-          <span>PREVIOUS</span>
-        </div>
-
-        <div class="aks-film-frame active">
-          <span id="aksFilmCurrent">FRAME 01</span>
-        </div>
-
-        <div class="aks-film-frame faded">
-          <span>NEXT TAKE</span>
-        </div>
-
+      <div class="film-frame active">
+        <span>NOW PLAYING</span>
+        <strong id="stripCurrent">
+          FRAME 01
+        </strong>
       </div>
 
-      <div class="aks-film-holes bottom-holes"></div>
+      <div class="film-frame">
+        <span>COMING NEXT</span>
+        <strong id="stripNext">
+          FRAME 02
+        </strong>
+      </div>
+
+      <button
+        class="film-nav"
+        onclick="nextAksQuestion()">
+        NEXT TAKE →
+      </button>
+
+      <div class="film-holes film-holes-bottom"></div>
 
     </div>
 
 
-    <!-- INSTRUCTION -->
-    <p class="aks-proj-instruction">
-      CHOOSE INSTINCTIVELY · THE CAMERA REMEMBERS
-    </p>
+    <!-- FOOTER -->
+    <div class="character-footer">
 
+      <p>
+        CHOOSE INSTINCTIVELY ·
+        THE CAMERA REMEMBERS
+      </p>
 
-    <!-- FINAL REVEAL -->
-    <div class="aks-proj-complete" id="aksProjComplete">
+      <div class="projector-console">
 
-      <div class="aks-complete-reel">
-        <div class="aks-complete-reel-inner">AKS</div>
+        <div class="console-note">
+          <small>TRUST YOUR INSTINCT</small>
+          <span>
+            There are no wrong choices here.
+          </span>
+        </div>
+
+        <button
+          class="projector-button"
+          onclick="nextAksQuestion()">
+
+          <span>▶</span>
+
+        </button>
+
+        <div class="console-note">
+          <small>THIS IS YOUR STORY</small>
+          <span>
+            You are the main character.
+          </span>
+        </div>
+
       </div>
-
-      <p>END OF CHARACTER REEL</p>
-
-      <h2>
-        Ten frames.
-        <em>One protagonist.</em>
-      </h2>
-
-      <span>
-        Your choices have left fingerprints on the story.
-        We are beginning to see your Aks.
-      </span>
-
-      <button onclick="finishProjectedQuiz()">
-        <span>STEP INTO THE FRAME</span>
-        <b>→</b>
-      </button>
 
     </div>
 
   </div>
-
 </section>
 
 
@@ -4649,10 +4192,15 @@ document.addEventListener("DOMContentLoaded", () => {
    04 — AKS PROJECTION ROOM
    ========================================= */
 
-const aksProjectionQuestions = [
+/* =========================================
+   04 — AKS CHARACTER TEST
+   ========================================= */
+
+const aksQuestions = [
 
   {
-    eyebrow: "WHEN THE SCRIPT FALLS APART",
+    kicker:
+      "WHEN THE SCRIPT FALLS APART",
 
     question:
       "Everything is going wrong. What do you do?",
@@ -4660,704 +4208,520 @@ const aksProjectionQuestions = [
     a:
       "EMBRACE THE CHAOS",
 
-    aSub:
-      "Trust whatever happens next",
+    aDescription:
+      "Trust whatever happens next.",
 
     b:
       "TAKE CONTROL",
 
-    bSub:
-      "Every move has a reason",
+    bDescription:
+      "Every move has a reason.",
 
-    image:
-      "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1600&q=80"
+    background:
+      "radial-gradient(circle at 25% 45%, rgba(104,48,64,.8), transparent 35%), radial-gradient(circle at 80% 40%, rgba(201,164,92,.5), transparent 38%), linear-gradient(135deg,#241126,#77434d,#b17a57)"
   },
 
 
   {
-    eyebrow:
-      "THE HEART HAS ENTERED THE SCENE",
+    kicker:
+      "THE ROAD DIVIDES",
 
     question:
-      "Your heart and your mind want different endings.",
+      "Two paths. One familiar, one unknown. Which one calls you?",
 
     a:
-      "FOLLOW THE HEART",
+      "THE SAFE ROAD",
 
-    aSub:
-      "Some things cannot be explained",
+    aDescription:
+      "Some things are worth protecting.",
 
     b:
-      "TRUST THE MIND",
+      "THE UNKNOWN",
 
-    bSub:
-      "Feelings can change the script",
+    bDescription:
+      "The best stories begin beyond the map.",
 
-    image:
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80"
+    background:
+      "radial-gradient(circle at 70% 25%, rgba(201,164,92,.4), transparent 30%), linear-gradient(135deg,#101522,#392c38,#76563f)"
   },
 
 
   {
-    eyebrow:
-      "A DEBT REMAINS UNPAID",
+    kicker:
+      "THE DOOR IS UNLOCKED",
 
     question:
-      "Someone betrayed you. The next scene is yours.",
+      "You discover a secret no one was meant to find.",
 
     a:
-      "GET EVEN",
+      "OPEN IT",
 
-    aSub:
-      "Some stories demand justice",
-
-    b:
-      "LET THEM GO",
-
-    bSub:
-      "Not every battle deserves you",
-
-    image:
-      "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=1600&q=80"
-  },
-
-
-  {
-    eyebrow:
-      "THE TRAIN LEAVES IN SIXTY SECONDS",
-
-    question:
-      "One platform holds love. The other holds your biggest dream.",
-
-    a:
-      "RUN TO THEM",
-
-    aSub:
-      "Some people are the destination",
-
-    b:
-      "BOARD THE TRAIN",
-
-    bSub:
-      "You came too far to stop now",
-
-    image:
-      "https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=1600&q=80"
-  },
-
-
-  {
-    eyebrow:
-      "THE FINAL WARNING",
-
-    question:
-      "They push you one step too far.",
-
-    a:
-      "STAND AND FIGHT",
-
-    aSub:
-      "This time, you don't move",
+    aDescription:
+      "Curiosity always wins.",
 
     b:
       "WALK AWAY",
 
-    bSub:
-      "Peace can also be power",
+    bDescription:
+      "Some mysteries should remain mysteries.",
 
-    image:
-      "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1600&q=80"
+    background:
+      "radial-gradient(circle at center, rgba(201,164,92,.45), transparent 20%), linear-gradient(135deg,#090b18,#31172c,#704934)"
   },
 
 
   {
-    eyebrow:
-      "THE CLOCK KEEPS ROLLING",
+    kicker:
+      "THE FINAL TRAIN",
 
     question:
-      "Where does your mind wander when no one is watching?",
+      "You have one minute to choose: stay or disappear?",
 
     a:
-      "BACK TO THE PAST",
+      "STAY",
 
-    aSub:
-      "To everything that made you",
+    aDescription:
+      "There are things worth fighting for.",
 
     b:
-      "INTO THE FUTURE",
+      "LEAVE",
 
-    bSub:
-      "To everything you could become",
+    bDescription:
+      "A new life waits beyond the platform.",
 
-    image:
-      "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1600&q=80"
+    background:
+      "linear-gradient(120deg,#101522,#49302f,#b2794f)"
   },
 
 
   {
-    eyebrow:
-      "YOUR NAME BECOMES A LEGEND",
+    kicker:
+      "THE HEART KNOWS FIRST",
 
     question:
-      "How would you rather be remembered?",
+      "When logic and instinct disagree, who gets the final word?",
 
     a:
-      "IMPOSSIBLE TO CHALLENGE",
+      "MY HEART",
 
-    aSub:
-      "They remember your power",
+    aDescription:
+      "Some truths cannot be explained.",
 
     b:
-      "IMPOSSIBLE TO FORGET",
+      "MY MIND",
 
-    bSub:
-      "They remember how you made them feel",
+    bDescription:
+      "Every choice has consequences.",
 
-    image:
-      "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=1600&q=80"
+    background:
+      "radial-gradient(circle at 30% 40%, rgba(166,93,106,.7), transparent 35%), linear-gradient(135deg,#241126,#6c394b,#b07958)"
   },
 
 
   {
-    eyebrow:
-      "THE TRUTH IS BEHIND THE DOOR",
+    kicker:
+      "THE SPOTLIGHT FINDS YOU",
 
     question:
-      "Opening it could change everything.",
+      "The whole room is watching. What happens next?",
 
     a:
-      "OPEN THE DOOR",
+      "I STEP FORWARD",
 
-    aSub:
-      "Know the truth, whatever the cost",
+    aDescription:
+      "The moment is mine.",
 
     b:
-      "WALK PAST IT",
+      "I OBSERVE",
 
-    bSub:
-      "Some mysteries protect us",
+    bDescription:
+      "The quietest person often sees the most.",
 
-    image:
-      "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1600&q=80"
+    background:
+      "radial-gradient(circle at center top, rgba(235,190,104,.55), transparent 35%), linear-gradient(#17101c,#3e2335,#241126)"
   },
 
 
   {
-    eyebrow:
-      "THERE IS ONLY TIME FOR ONE",
+    kicker:
+      "THE MESSAGE ARRIVES",
 
     question:
-      "The world needs saving. So does the person you love.",
+      "A person from your past asks to meet one last time.",
 
     a:
-      "SAVE EVERYONE",
+      "GO",
 
-    aSub:
-      "The hero chooses the world",
+    aDescription:
+      "Some chapters deserve an ending.",
 
     b:
-      "SAVE YOUR PERSON",
+      "DELETE IT",
 
-    bSub:
-      "They are your entire world",
+    bDescription:
+      "Not every door needs reopening.",
 
-    image:
-      "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1600&q=80"
+    background:
+      "linear-gradient(135deg,#121525,#56313e,#9a654e)"
   },
 
 
   {
-    eyebrow:
-      "THE CAMERA WAITS FOR THE FINAL SHOT",
+    kicker:
+      "THE WORLD GOES QUIET",
 
     question:
-      "How should your story be remembered?",
+      "Where do you feel most alive?",
 
     a:
-      "A HAPPY ENDING",
+      "IN THE CROWD",
 
-    aSub:
-      "The light finally wins",
+    aDescription:
+      "Energy finds me through people.",
 
     b:
-      "AN UNFORGETTABLE ENDING",
+      "ALONE",
 
-    bSub:
-      "Even if it leaves them speechless",
+    bDescription:
+      "Silence is where I hear myself.",
 
-    image:
-      "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1600&q=80"
+    background:
+      "radial-gradient(circle at 25% 50%, rgba(166,93,106,.6), transparent 35%), radial-gradient(circle at 80% 50%, rgba(201,164,92,.35), transparent 35%), #17101f"
+  },
+
+
+  {
+    kicker:
+      "THE VILLAIN SPEAKS",
+
+    question:
+      "Someone underestimates you. What is your response?",
+
+    a:
+      "PROVE THEM WRONG",
+
+    aDescription:
+      "Let the result speak.",
+
+    b:
+      "LET THEM THINK IT",
+
+    bDescription:
+      "Being underestimated is an advantage.",
+
+    background:
+      "linear-gradient(135deg,#090b16,#3c172b,#7c483b)"
+  },
+
+
+  {
+    kicker:
+      "THE LAST FRAME",
+
+    question:
+      "How would you want your story to be remembered?",
+
+    a:
+      "I CHANGED THE WORLD",
+
+    aDescription:
+      "I left something behind.",
+
+    b:
+      "I LIVED FULLY",
+
+    bDescription:
+      "Every moment meant something.",
+
+    background:
+      "radial-gradient(circle at 70% 30%, rgba(224,177,91,.55), transparent 35%), linear-gradient(135deg,#16101d,#613b3d,#b17c57)"
   }
 
 ];
 
 
-let aksProjectionIndex = 0;
+let currentAksQuestion = 0;
 
-let aksProjectionAnswers = [];
-
-let aksProjectionLocked = false;
+const aksAnswers = [];
 
 
-/* LOAD FRAME */
+/* RENDER QUESTION */
 
-function loadProjectionFrame() {
+function renderAksQuestion() {
 
-  const frame =
-    aksProjectionQuestions[
-      aksProjectionIndex
-    ];
+  const q =
+    aksQuestions[currentAksQuestion];
 
 
-  document
-    .getElementById(
-      "aksSceneEyebrow"
-    )
-    .textContent =
-      frame.eyebrow;
+  document.getElementById(
+    "questionKicker"
+  ).textContent =
+    q.kicker;
 
 
-  document
-    .getElementById(
-      "aksProjQuestion"
-    )
-    .textContent =
-      frame.question;
+  document.getElementById(
+    "questionText"
+  ).textContent =
+    q.question;
 
 
-  document
-    .getElementById(
-      "aksProjTextA"
-    )
-    .textContent =
-      frame.a;
+  document.getElementById(
+    "choiceATitle"
+  ).textContent =
+    q.a;
 
 
-  document
-    .getElementById(
-      "aksProjSubA"
-    )
-    .textContent =
-      frame.aSub;
+  document.getElementById(
+    "choiceADescription"
+  ).textContent =
+    q.aDescription;
 
 
-  document
-    .getElementById(
-      "aksProjTextB"
-    )
-    .textContent =
-      frame.b;
+  document.getElementById(
+    "choiceBTitle"
+  ).textContent =
+    q.b;
 
 
-  document
-    .getElementById(
-      "aksProjSubB"
-    )
-    .textContent =
-      frame.bSub;
+  document.getElementById(
+    "choiceBDescription"
+  ).textContent =
+    q.bDescription;
 
 
-  document
-    .getElementById(
-      "aksSceneImage"
-    )
-    .style.backgroundImage =
-      `url("${frame.image}")`;
+  document.getElementById(
+    "questionBackground"
+  ).style.background =
+    q.background;
 
 
   const number =
     String(
-      aksProjectionIndex + 1
+      currentAksQuestion + 1
     ).padStart(2, "0");
 
 
-  document
-    .getElementById(
-      "aksProjCounter"
-    )
-    .textContent =
-      `FRAME ${number} / 10`;
+  document.getElementById(
+    "frameCount"
+  ).textContent =
+    `FRAME ${number} / 10`;
 
 
-  document
-    .getElementById(
-      "aksSceneNumber"
-    )
-    .textContent =
-      `TAKE ${number}`;
+  document.getElementById(
+    "takeNumber"
+  ).textContent =
+    `TAKE ${number}`;
 
 
-  document
-    .getElementById(
-      "aksFilmCurrent"
-    )
-    .textContent =
-      `FRAME ${number}`;
+  document.getElementById(
+    "stripCurrent"
+  ).textContent =
+    `FRAME ${number}`;
 
 
-  document
-    .getElementById(
-      "aksProjProgressFill"
-    )
-    .style.width =
-
-      `${
-        (
-          (
-            aksProjectionIndex + 1
-          )
-          /
-          aksProjectionQuestions.length
-        )
-        *
-        100
-      }%`;
-
-}
-
-
-/* CHOOSE ANSWER */
-
-function chooseProjectedAnswer(
-  choice
-) {
-
-  if (
-    aksProjectionLocked
-  ) return;
-
-
-  aksProjectionLocked =
-    true;
-
-
-  const frame =
-    aksProjectionQuestions[
-      aksProjectionIndex
-    ];
-
-
-  const answer =
-    choice === "A"
-      ? frame.a
-      : frame.b;
-
-
-  aksProjectionAnswers.push({
-
-    question:
-      frame.question,
-
-    answer:
-      answer
-
-  });
-
-
-  const selected =
-    document.getElementById(
-
-      choice === "A"
-
-        ? "aksProjChoiceA"
-
-        : "aksProjChoiceB"
-
+  const nextNumber =
+    Math.min(
+      currentAksQuestion + 2,
+      10
     );
 
 
-  const rejected =
-    document.getElementById(
-
-      choice === "A"
-
-        ? "aksProjChoiceB"
-
-        : "aksProjChoiceA"
-
-    );
+  document.getElementById(
+    "stripNext"
+  ).textContent =
+    `FRAME ${String(nextNumber).padStart(2,"0")}`;
 
 
-  selected
-    .classList
-    .add(
-      "projected-selected"
-    );
+  document.getElementById(
+    "filmProgressFill"
+  ).style.width =
+    `${(currentAksQuestion + 1) * 10}%`;
 
-
-  rejected
-    .classList
-    .add(
-      "projected-rejected"
-    );
-
-
-  /* SPEED UP REELS */
 
   document
     .querySelectorAll(
-      ".aks-reel"
+      ".cinema-choice"
     )
     .forEach(
-      reel => {
-
-        reel.style
-          .animationDuration =
-            ".7s";
-
-      }
+      choice =>
+        choice.classList.remove(
+          "selected"
+        )
     );
 
 
-  setTimeout(
-    nextProjectionFrame,
-    900
-  );
+  if (
+    aksAnswers[
+      currentAksQuestion
+    ] !== undefined
+  ) {
 
-}
-
-
-/* NEXT FRAME */
-
-function nextProjectionFrame() {
-
-  const transition =
-    document.getElementById(
-      "aksProjTransition"
-    );
-
-
-  transition
-    .classList
-    .add(
-      "active"
-    );
-
-
-  setTimeout(() => {
-
-    aksProjectionIndex++;
-
-
-    document
-      .getElementById(
-        "aksProjChoiceA"
-      )
-      .className =
-        "aks-scene-choice";
-
-
-    document
-      .getElementById(
-        "aksProjChoiceB"
-      )
-      .className =
-        "aks-scene-choice";
-
-
-    if (
-      aksProjectionIndex
-      <
-      aksProjectionQuestions.length
-    ) {
-
-      loadProjectionFrame();
-
-      aksProjectionLocked =
-        false;
-
-    }
-
-    else {
-
-      completeProjectionQuiz();
-
-    }
+    const selected =
+      aksAnswers[
+        currentAksQuestion
+      ];
 
 
     document
       .querySelectorAll(
-        ".aks-reel"
-      )
-      .forEach(
-        reel => {
-
-          reel.style
-            .animationDuration =
-              "7s";
-
-        }
+        ".cinema-choice"
+      )[selected]
+      .classList.add(
+        "selected"
       );
 
-
-    setTimeout(() => {
-
-      transition
-        .classList
-        .remove(
-          "active"
-        );
-
-    }, 350);
-
-
-  }, 550);
+  }
 
 }
 
 
-/* COMPLETE */
+/* SELECT ANSWER */
 
-function completeProjectionQuiz() {
+function selectAksAnswer(choice) {
 
-  localStorage.setItem(
+  aksAnswers[
+    currentAksQuestion
+  ] = choice;
 
-    "aksPersonality",
 
-    JSON.stringify(
-      aksProjectionAnswers
+  document
+    .querySelectorAll(
+      ".cinema-choice"
     )
+    .forEach(
+      item =>
+        item.classList.remove(
+          "selected"
+        )
+    );
 
+
+  document
+    .querySelectorAll(
+      ".cinema-choice"
+    )[choice]
+    .classList.add(
+      "selected"
+    );
+
+
+  setTimeout(
+    () => {
+
+      if (
+        currentAksQuestion <
+        aksQuestions.length - 1
+      ) {
+
+        nextAksQuestion();
+
+      }
+
+      else {
+
+        finishAksQuestionnaire();
+
+      }
+
+    },
+    650
+  );
+
+}
+
+
+/* NEXT */
+
+function nextAksQuestion() {
+
+  if (
+    currentAksQuestion >=
+    aksQuestions.length - 1
+  ) {
+
+    finishAksQuestionnaire();
+
+    return;
+
+  }
+
+
+  changeAksFrame(
+    currentAksQuestion + 1
+  );
+
+}
+
+
+/* PREVIOUS */
+
+function previousAksQuestion() {
+
+  if (
+    currentAksQuestion > 0
+  ) {
+
+    changeAksFrame(
+      currentAksQuestion - 1
+    );
+
+  }
+
+}
+
+
+/* CINEMATIC FRAME CHANGE */
+
+function changeAksFrame(index) {
+
+  const screen =
+    document.getElementById(
+      "cinemaScreen"
+    );
+
+
+  screen.classList.add(
+    "changing"
   );
 
 
-  document
-    .querySelector(
-      ".aks-projector-machine"
-    )
-    .style.display =
-      "none";
+  setTimeout(
+    () => {
+
+      currentAksQuestion =
+        index;
 
 
-  document
-    .querySelector(
-      ".aks-projector-beam"
-    )
-    .style.display =
-      "none";
+      renderAksQuestion();
 
 
-  document
-    .getElementById(
-      "aksProjectionScreen"
-    )
-    .style.display =
-      "none";
-
-
-  document
-    .querySelector(
-      ".aks-film-strip"
-    )
-    .style.display =
-      "none";
-
-
-  document
-    .querySelector(
-      ".aks-proj-instruction"
-    )
-    .style.display =
-      "none";
-
-
-  document
-    .querySelector(
-      ".aks-proj-header"
-    )
-    .style.display =
-      "none";
-
-
-  document
-    .getElementById(
-      "aksProjComplete"
-    )
-    .classList
-    .add(
-      "show"
-    );
-
-}
-
-
-/* NEXT SECTION */
-
-function finishProjectedQuiz() {
-
-  document
-    .getElementById(
-      "photo-upload"
-    )
-    .scrollIntoView({
-
-      behavior:
-        "smooth"
-
-    });
-
-}
-
-
-/* DUST PARTICLES */
-
-function createAksDust() {
-
-  const container =
-    document.getElementById(
-      "aksProjDust"
-    );
-
-
-  for (
-    let i = 0;
-    i < 25;
-    i++
-  ) {
-
-    const particle =
-      document.createElement(
-        "span"
+      screen.classList.remove(
+        "changing"
       );
 
+    },
+    450
+  );
 
-    particle.className =
-      "aks-dust-particle";
-
-
-    particle.style.left =
-      Math.random()
-      *
-      100
-      +
-      "%";
+}
 
 
-    particle.style.animationDuration =
-      (
-        8
-        +
-        Math.random()
-        *
-        12
-      )
-      +
-      "s";
+/* FINISH */
 
+function finishAksQuestionnaire() {
 
-    particle.style.animationDelay =
-      (
-        Math.random()
-        *
-        10
-      )
-      +
-      "s";
-
-
-    container.appendChild(
-      particle
+  const photoSection =
+    document.getElementById(
+      "photo-upload"
     );
+
+
+  if (photoSection) {
+
+    photoSection.scrollIntoView({
+      behavior:
+        "smooth"
+    });
 
   }
 
@@ -5367,20 +4731,10 @@ function createAksDust() {
 /* INITIALISE */
 
 document.addEventListener(
-
   "DOMContentLoaded",
-
-  () => {
-
-    loadProjectionFrame();
-
-    createAksDust();
-
-  }
-
+  renderAksQuestion
 );
 
-      
     /* 05 — PHOTO UPLOAD
        Paste Photo Upload JavaScript Here
     */
